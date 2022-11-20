@@ -9,3 +9,6 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.0.26", features = ["derive", "cargo"] }
+
+[dev-dependencies]
+trycmd = "0.14.4"

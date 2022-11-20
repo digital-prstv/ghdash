@@ -1,0 +1,23 @@
+```console
+$ ghdash --help
+Dashboard for Github account
+
+Usage: ghdash
+
+Options:
+  -h, --help     Print help information
+  -V, --version  Print version information
+
+```
+
+```console
+$ ghdash -h
+Dashboard for Github account
+
+Usage: ghdash
+
+Options:
+  -h, --help     Print help information
+  -V, --version  Print version information
+
+```
