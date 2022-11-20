@@ -2,11 +2,12 @@
 $ ghdash --help
 Dashboard for Github account
 
-Usage: ghdash
+Usage: ghdash --config <CONFIG>
 
 Options:
-  -h, --help     Print help information
-  -V, --version  Print version information
+  -c, --config <CONFIG>  alternate configuration file
+  -h, --help             Print help information
+  -V, --version          Print version information
 
 ```
 
@@ -14,10 +15,11 @@ Options:
 $ ghdash -h
 Dashboard for Github account
 
-Usage: ghdash
+Usage: ghdash --config <CONFIG>
 
 Options:
-  -h, --help     Print help information
-  -V, --version  Print version information
+  -c, --config <CONFIG>  alternate configuration file
+  -h, --help             Print help information
+  -V, --version          Print version information
 
 ```

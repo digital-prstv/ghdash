@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "cli",
         "dashboard",
-        "config"
+        "config",
+        "lib"
     ]
 }
