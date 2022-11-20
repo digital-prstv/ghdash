@@ -1,9 +1,16 @@
+mod cli;
+mod config;
+
+use crate::cli::GhDashCli;
+use crate::config::GhConfig;
 use clap::Parser;
 
-#[derive(Parser, Debug)]
-#[command(author, version, about, long_about = None)]
-struct GhDashCli {}
+type Error = confy::ConfyError;
 
-fn main() {
+fn main() -> Result<(), Error> {
     let _args = GhDashCli::parse();
+    let cfg: GhConfig = confy::load("ghdash", None)?;
+    dbg!(cfg);
+
+    Ok(())
 }
