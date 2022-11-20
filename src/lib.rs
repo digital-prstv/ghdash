@@ -20,10 +20,10 @@
 //! ```
 //!
 //! ```no_run
-//! # type Error =
+//! # type Error = confy::ConfyError;
 //! # fn main() -> Result<(), Error> {
 //!
 //! # Ok(())
-//! #}
+//! # }
 //! ```
 //!
