@@ -27,3 +27,9 @@
 //! # }
 //! ```
 //!
+
+mod dashboard;
+mod error;
+
+pub use dashboard::Dashboard;
+pub use error::Error;

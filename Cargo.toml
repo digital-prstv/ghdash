@@ -12,6 +12,7 @@ clap = { version = "4.0.26", features = ["derive", "cargo"] }
 confy = "0.5.1"
 serde = { version = "1.0.147", features = ["derive"] }
 serde_derive = "1.0.147"
+thiserror = "1.0.37"
 
 [dev-dependencies]
 trycmd = "0.14.4"

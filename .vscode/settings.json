@@ -3,6 +3,7 @@
         "cli",
         "dashboard",
         "config",
-        "lib"
+        "lib",
+        "error"
     ]
 }

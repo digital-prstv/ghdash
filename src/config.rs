@@ -15,3 +15,13 @@ pub struct GhConfig {
     user: String,
     token: String,
 }
+
+impl GhConfig {
+    pub fn user(&self) -> String {
+        self.user.clone()
+    }
+
+    pub fn token(&self) -> String {
+        self.token.clone()
+    }
+}
