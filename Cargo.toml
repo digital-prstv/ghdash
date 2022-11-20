@@ -1,0 +1,30 @@
+[package]
+name = "ghdash"
+authors = ["Jeremiah Russell <jrussell@jerus.ie>"]
+version = "0.1.0"
+description = "Dashboard for Github account"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.0.26", features = ["derive", "cargo"] }
+confy = "0.5.1"
+serde = { version = "1.0.147", features = ["derive"] }
+serde_derive = "1.0.147"
+thiserror = "1.0.37"
+
+[dev-dependencies]
+trycmd = "0.14.4"
+
+[lib]
+name = "ghdash"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ghdash"
+path = "src/main.rs"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

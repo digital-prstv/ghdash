@@ -1,0 +1,9 @@
+{
+    "conventionalCommits.scopes": [
+        "cli",
+        "dashboard",
+        "config",
+        "lib",
+        "error"
+    ]
+}
