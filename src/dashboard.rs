@@ -9,6 +9,7 @@ use crate::error::Error;
 //     print_stdout, Cell, Style, Table, TableStruct,
 // };
 use octorust::types::Order;
+use octorust::types::PullsListSort;
 use octorust::types::ReposListOrgSort;
 use octorust::types::ReposListUserType;
 use octorust::{auth::Credentials, Client};
@@ -18,6 +19,25 @@ use term_grid::Filling;
 use term_grid::Grid;
 use term_grid::GridOptions;
 
+#[derive(Debug, Default)]
+struct Repo {
+    name: String,
+    pr_count: usize,
+}
+
+impl Repo {
+    fn new(name: Option<String>, pr_count: Option<usize>) -> Repo {
+        match (name, pr_count) {
+            (None, None) => Repo::default(),
+            (Some(name), None) => Repo { name, pr_count: 0 },
+            (None, Some(pr_count)) => Repo {
+                name: String::from(""),
+                pr_count,
+            },
+            (Some(name), Some(pr_count)) => Repo { name, pr_count },
+        }
+    }
+}
 /// Struct Representing a Dashboard and key data required to create the dashboard
 ///
 /// ## Fields
@@ -29,7 +49,7 @@ use term_grid::GridOptions;
 pub struct Dashboard {
     user: String,
     token: String,
-    repositories: Vec<String>,
+    repositories: Vec<Repo>,
 }
 
 impl Dashboard {
@@ -49,6 +69,7 @@ impl Dashboard {
         let github = Client::new(String::from(user), Credentials::Token(String::from(token)))?;
 
         let repos = github.repos();
+        let pulls = github.pulls();
 
         let username = user;
         let type_ = ReposListUserType::Owner;
@@ -58,11 +79,25 @@ impl Dashboard {
             .list_all_for_user(username, type_, sort, direction)
             .await?;
 
-        let mut repositories: Vec<String> = vec![];
+        let mut repositories: Vec<Repo> = vec![];
 
         for repo in repos_list {
             if !repo.fork {
-                repositories.push(repo.name);
+                let repo_name = repo.name.as_str();
+                let pr_count = pulls
+                    .list_all(
+                        user,
+                        repo_name,
+                        octorust::types::IssuesListState::Open,
+                        "",
+                        "",
+                        PullsListSort::Created,
+                        Order::Asc,
+                    )
+                    .await?
+                    .iter()
+                    .count();
+                repositories.push(Repo::new(Some(String::from(repo_name)), Some(pr_count)));
             }
         }
 
@@ -82,13 +117,15 @@ impl Dashboard {
         });
 
         // Add the headings
-        grid.add(Cell::from(heading("Repository")));
+        grid.add(Cell::from(heading("Repository        ")));
+        grid.add(Cell::from(heading("PR Count")));
 
         for repo in self.repositories.deref() {
-            grid.add(Cell::from(repo.clone()));
+            grid.add(Cell::from(repo.name.clone()));
+            grid.add(Cell::from(repo.pr_count.to_string()));
         }
 
-        format!("{}", grid.fit_into_columns(1))
+        format!("{}", grid.fit_into_columns(2))
     }
 
     /// Get the user
@@ -111,12 +148,12 @@ impl Dashboard {
         self
     }
 
-    /// Add a repo to the Dashboard
-    ///
-    pub fn add_repo(&mut self, repo: &str) -> &mut Self {
-        self.repositories.push(repo.to_string());
-        self
-    }
+    // /// Add a repo to the Dashboard
+    // ///
+    // pub fn add_repo(&mut self, repo: &str) -> &mut Self {
+    //     self.repositories.push(repo.to_string());
+    //     self
+    // }
 }
 
 fn heading(heading: &str) -> String {
