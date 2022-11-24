@@ -29,4 +29,9 @@ impl GhConfig {
     pub fn token(&self) -> String {
         self.token.clone()
     }
+
+    pub fn set_token(&mut self, token: &str) -> &mut Self {
+        self.token = token.to_string();
+        self
+    }
 }

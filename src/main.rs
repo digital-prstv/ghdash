@@ -9,7 +9,8 @@ use ghdash::Dashboard;
 type Error = ghdash::Error;
 const APP_NAME: &str = clap::crate_name!();
 
-fn main() -> Result<(), Error> {
+#[tokio::main]
+async fn main() -> Result<(), Error> {
     let args = GhDashCli::parse();
 
     let config_name = args.config();
@@ -22,11 +23,16 @@ fn main() -> Result<(), Error> {
         confy::store(APP_NAME, config_name, cfg.clone())?;
     }
 
-    dbg!(args.user());
+    if let Some(token) = args.token() {
+        cfg.set_token(token.as_str());
+        confy::store(APP_NAME, config_name, cfg.clone())?;
+    }
 
-    let dashboard = Dashboard::new(cfg.user().as_str(), cfg.token().as_str())?;
+    let dashboard = Dashboard::new(cfg.user().as_str(), cfg.token().as_str()).await?;
 
-    dbg!(dashboard);
+    let table = dashboard.build_dashboard();
+
+    print!("{}", table);
 
     Ok(())
 }
