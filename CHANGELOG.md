@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### Features
+
+- Add pr_count to dasboard
+
+### Miscellaneous Tasks
+
+- Exclude coverage reports
+
+### Testing
+
+- Update tests to include user option
+
 ## [0.1.0] - 2022-11-23
 
 ### Documentation
