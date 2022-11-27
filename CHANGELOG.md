@@ -60,7 +60,8 @@ All notable changes to this project will be documented in this file.
 - Testing for cli options
 - Update tests for change in cli spec
 
-<!-- next-url -->[Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.1...HEAD
-<!-- next-url -->[v0.1.1]: https://github.com/jerusdp/ghdash/compare/v0.1.0...v0.1.1
-<!-- next-url -->[v0.1.0]: https://github.com/jerusdp/ghdash/compare/...v0.1.1
+<!-- next-url -->
+[Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.1...HEAD
+[v0.1.1]: https://github.com/jerusdp/ghdash/compare/v0.1.0...v0.1.1
+[v0.1.0]: https://github.com/jerusdp/ghdash/compare/...v0.1.1
 
