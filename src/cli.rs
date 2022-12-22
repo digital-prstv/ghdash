@@ -40,7 +40,7 @@ impl GhDashCli {
     }
 
     pub fn repositories(&self) -> Option<RepoScope> {
-        self.repositories.clone()
+        self.repositories
     }
 }
 

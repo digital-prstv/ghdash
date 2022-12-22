@@ -103,8 +103,7 @@ impl Dashboard {
                                 Order::Asc,
                             )
                             .await?
-                            .iter()
-                            .count();
+                            .len();
                         repositories.push(Repo::new(Some(String::from(repo_name)), Some(pr_count)));
                     }
                 }
@@ -122,8 +121,7 @@ impl Dashboard {
                                 Order::Asc,
                             )
                             .await?
-                            .iter()
-                            .count();
+                            .len();
                         repositories.push(Repo::new(Some(String::from(repo_name)), Some(pr_count)));
                     }
                 }
@@ -140,8 +138,7 @@ impl Dashboard {
                             Order::Asc,
                         )
                         .await?
-                        .iter()
-                        .count();
+                        .len();
                     repositories.push(Repo::new(Some(String::from(repo_name)), Some(pr_count)));
                 }
                 RepoScope::Private => {
@@ -212,7 +209,7 @@ impl Dashboard {
     /// Get the repo_scope for the Dashboard
     ///
     pub fn repo_scope(&self) -> RepoScope {
-        self.repo_scope.clone()
+        self.repo_scope
     }
 
     /// Set the repo_scope for the Dashboard

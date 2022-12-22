@@ -29,7 +29,7 @@ async fn main() -> Result<(), Error> {
 
     let repo_scope = args.repositories().unwrap_or(RepoScope::Authored);
 
-    if &RepoScope::Private == &repo_scope {
+    if RepoScope::Private == repo_scope {
         return Err(Error::FeatureNotImplemented);
     }
 
