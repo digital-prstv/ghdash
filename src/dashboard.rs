@@ -6,14 +6,16 @@ use std::ops::Deref;
 use crate::error::Error;
 use ansi_term::{Colour, Style};
 use clap::ValueEnum;
-use octorust::types::{Order, PullsListSort, ReposListOrgSort, ReposListUserType};
+use octorust::types::{Order, PullsListSort, ReposListOrgSort, ReposListType, Repository};
 use octorust::{auth::Credentials, Client};
 use term_grid::{Cell, Direction, Filling, Grid, GridOptions};
+use tracing::{info, instrument};
 
 /// Options for the scope of the repositories listed in the dashboard
-#[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum, Debug)]
+#[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum, Default, Debug)]
 pub enum RepoScope {
     /// Public repositories that are original written by the user
+    #[default]
     Authored,
     /// Public repositories that are forked from other authors
     Forked,
@@ -23,25 +25,14 @@ pub enum RepoScope {
     Private,
 }
 
-#[derive(Debug, Default)]
+#[derive(Debug, Clone, Default)]
 struct Repo {
     name: String,
+    fork: bool,
+    archived: bool,
     pr_count: usize,
 }
 
-impl Repo {
-    fn new(name: Option<String>, pr_count: Option<usize>) -> Repo {
-        match (name, pr_count) {
-            (None, None) => Repo::default(),
-            (Some(name), None) => Repo { name, pr_count: 0 },
-            (None, Some(pr_count)) => Repo {
-                name: String::from(""),
-                pr_count,
-            },
-            (Some(name), Some(pr_count)) => Repo { name, pr_count },
-        }
-    }
-}
 /// Struct Representing a Dashboard and key data required to create the dashboard
 ///
 /// ## Fields
@@ -49,20 +40,23 @@ impl Repo {
 /// - token - a personal access token for the user that provides access to the github API
 /// - repositories - a list of the user's repositories presented in the dashboard
 ///
-#[derive(Debug)]
+#[derive(Debug, Clone, Default)]
 pub struct Dashboard {
     user: String,
     token: String,
     repositories: Vec<Repo>,
     repo_scope: RepoScope,
+    archived: bool,
 }
 
 impl Dashboard {
     /// Create a dashboard by setting the user and token strings to access Github
+    ///
     /// Without a user and token to get data from Github the dashboard is meaningless
     /// therefore a new struct without this data is not meaningful
     ///
-    pub async fn new(user: &str, token: &str, repo_scope: RepoScope) -> Result<Dashboard, Error> {
+    #[instrument]
+    pub fn builder(user: &str, token: &str) -> Result<Self, Error> {
         if user.is_empty() {
             return Err(Error::MustHaveUser);
         }
@@ -71,88 +65,111 @@ impl Dashboard {
             return Err(Error::MustHaveToken);
         }
 
-        let github = Client::new(String::from(user), Credentials::Token(String::from(token)))?;
+        info!("Starting to build the dashboard.");
+
+        Ok(Dashboard {
+            user: user.to_string(),
+            token: token.to_string(),
+            ..Default::default()
+        })
+    }
+
+    /// Set the repo_scope for the Dashboard
+    ///
+    #[instrument]
+    pub fn set_repo_scope(&mut self, repo_scope: RepoScope) -> &mut Self {
+        info!("set the scope to {:#?}", &repo_scope);
+        self.repo_scope = repo_scope;
+        self
+    }
+
+    /// Gather the data for the report from Github
+    ///
+    #[instrument]
+    pub async fn finish(&mut self) -> Result<Self, Error> {
+        info!("Finishing the dashboard configuration build.");
+        let list_type = match self.repo_scope {
+            RepoScope::Authored => ReposListType::Public,
+            RepoScope::Forked => ReposListType::Public,
+            RepoScope::Private => ReposListType::Private,
+            RepoScope::Public => ReposListType::Public,
+        };
+
+        let github = Client::new(
+            String::from(&self.user),
+            Credentials::Token(String::from(&self.token)),
+        )?;
 
         let repos = github.repos();
         let pulls = github.pulls();
 
+        info!("Access secured to github repositories and pull requests.\nGetting the base list of repositories.");
         let repos_list = repos
-            .list_all_for_user(
-                user,
-                ReposListUserType::Owner,
+            .list_all_for_authenticated_user(
+                None,
+                "",
+                Some(list_type),
                 ReposListOrgSort::FullName,
                 Order::Asc,
+                None,
+                None,
             )
             .await?;
 
         let mut repositories: Vec<Repo> = vec![];
 
+        info!("Building list of repositories ({:#?}).", &repositories);
+
         for repo in repos_list {
-            match repo_scope {
-                RepoScope::Authored => {
-                    if !repo.fork {
-                        let repo_name = repo.name.as_str();
-                        let pr_count = pulls
-                            .list_all(
-                                user,
-                                repo_name,
-                                octorust::types::IssuesListState::Open,
-                                "",
-                                "",
-                                PullsListSort::Created,
-                                Order::Asc,
-                            )
-                            .await?
-                            .len();
-                        repositories.push(Repo::new(Some(String::from(repo_name)), Some(pr_count)));
-                    }
-                }
-                RepoScope::Forked => {
-                    if repo.fork {
-                        let repo_name = repo.name.as_str();
-                        let pr_count = pulls
-                            .list_all(
-                                user,
-                                repo_name,
-                                octorust::types::IssuesListState::Open,
-                                "",
-                                "",
-                                PullsListSort::Created,
-                                Order::Asc,
-                            )
-                            .await?
-                            .len();
-                        repositories.push(Repo::new(Some(String::from(repo_name)), Some(pr_count)));
-                    }
-                }
-                RepoScope::Public => {
-                    let repo_name = repo.name.as_str();
-                    let pr_count = pulls
-                        .list_all(
-                            user,
-                            repo_name,
-                            octorust::types::IssuesListState::Open,
-                            "",
-                            "",
-                            PullsListSort::Created,
-                            Order::Asc,
-                        )
-                        .await?
-                        .len();
-                    repositories.push(Repo::new(Some(String::from(repo_name)), Some(pr_count)));
-                }
-                RepoScope::Private => {
-                    unreachable!()
-                }
+            let repo_name = repo.name.as_str();
+            let fork = repo.fork;
+            let archived = repo.archived;
+            let mut pr_count = 0;
+            if owned_by(&repo, &self.user) {
+                pr_count = pulls
+                    .list_all(
+                        &self.user,
+                        repo_name,
+                        octorust::types::IssuesListState::Open,
+                        "",
+                        "",
+                        PullsListSort::Created,
+                        Order::Asc,
+                    )
+                    .await?
+                    .len();
             }
+            repositories.push(Repo {
+                name: String::from(repo_name),
+                fork,
+                archived,
+                pr_count,
+            });
         }
 
-        Ok(Dashboard {
-            user: user.to_string(),
-            token: token.to_string(),
-            repositories,
-            repo_scope,
-        })
+        info!(
+            "Check if archived should be retained or removed ({:#?}).",
+            self.archived
+        );
+        if !self.archived {
+            repositories.retain(|repo| !repo.archived);
+        }
+
+        match self.repo_scope {
+            RepoScope::Authored => {
+                info!("Remove forked repositories.");
+                repositories.retain(|repo| !repo.fork);
+            }
+            RepoScope::Forked => {
+                info!("Retain only forked repositories.");
+                repositories.retain(|repo| repo.fork);
+            }
+            _ => {}
+        }
+
+        self.repositories = repositories;
+
+        Ok(self.to_owned())
     }
 
     /// Build a table from the dashboard configuration and data
@@ -179,52 +196,6 @@ impl Dashboard {
 
         format!("{}", grid.fit_into_columns(2))
     }
-
-    /// Get the user name for the dashboard
-    ///
-    pub fn user(&self) -> &str {
-        &self.user
-    }
-
-    /// Set the user name for the Dashboard
-    ///
-    pub fn set_user(&mut self, user: &str) -> &mut Self {
-        self.user = user.to_string();
-        self
-    }
-
-    /// Get the token for the Dashboard
-    ///
-    pub fn token(&self) -> &str {
-        &self.token
-    }
-
-    /// Set the token for the Dashboard
-    ///
-    pub fn set_token(&mut self, token: &str) -> &mut Self {
-        self.token = token.to_string();
-        self
-    }
-
-    /// Get the repo_scope for the Dashboard
-    ///
-    pub fn repo_scope(&self) -> RepoScope {
-        self.repo_scope
-    }
-
-    /// Set the repo_scope for the Dashboard
-    ///
-    pub fn set_repo_scope(&mut self, repo_scope: RepoScope) -> &mut Self {
-        self.repo_scope = repo_scope;
-        self
-    }
-
-    // /// Add a repo to the Dashboard
-    // ///
-    // pub fn add_repo(&mut self, repo: &str) -> &mut Self {
-    //     self.repositories.push(repo.to_string());
-    //     self
-    // }
 }
 
 fn heading(heading: &str) -> String {
@@ -239,4 +210,12 @@ fn bold_yellow<T: ToString>(text: T) -> String {
             .fg(Colour::Fixed(220))
             .paint(text.to_string())
     )
+}
+
+fn owned_by(repo: &Repository, user: &str) -> bool {
+    if let Some(owner) = repo.owner.clone() {
+        owner.login == user
+    } else {
+        false
+    }
 }
