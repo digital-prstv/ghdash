@@ -5,8 +5,14 @@ Dashboard for Github account
 Usage: ghdash [OPTIONS]
 
 Options:
+  -v, --verbose...
+          More output per occurrence
+
+  -q, --quiet...
+          Less output per occurrence
+
   -c, --config <CONFIG>
-          alternate configuration file
+          Force the calculation of the version number alternate configuration file
 
   -u, --user <USER>
           github user name
@@ -38,7 +44,9 @@ Dashboard for Github account
 Usage: ghdash [OPTIONS]
 
 Options:
-  -c, --config <CONFIG>              alternate configuration file
+  -v, --verbose...                   More output per occurrence
+  -q, --quiet...                     Less output per occurrence
+  -c, --config <CONFIG>              Force the calculation of the version number alternate configuration file
   -u, --user <USER>                  github user name
   -t, --token <TOKEN>                github personal access token
   -r, --repositories <REPOSITORIES>  scope for the repositories shown in the dashboard [possible values: authored, forked, public, private]
