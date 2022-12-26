@@ -11,13 +11,17 @@ edition = "2021"
 ansi_term = "0.12.1"
 anyhow = "1.0.66"
 clap = { version = "4.0.26", features = ["derive", "cargo"] }
+clap-verbosity-flag = "2.0.0"
 confy = "0.5.1"
-octorust = "0.2.1"
+log = "0.4.17"
+octorust = { path = "../third-party-api-clients/github" }
 serde = { version = "1.0.147", features = ["derive"] }
 serde_derive = "1.0.147"
 term_grid = "0.2.0"
 thiserror = "1.0.37"
 tokio = { version = "1.22.0", features = ["macros", "rt-multi-thread"] }
+tracing = "0.1.37"
+tracing-subscriber = "0.3.16"
 
 [dev-dependencies]
 trycmd = "0.14.4"
