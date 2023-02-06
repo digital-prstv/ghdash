@@ -4,6 +4,7 @@
         "dashboard",
         "config",
         "lib",
-        "error"
+        "error",
+        "management"
     ]
 }

@@ -7,10 +7,11 @@ use std::ops::Deref;
 use crate::error::Error;
 use ansi_term::{Colour, Style};
 use clap::ValueEnum;
+use octorust::pulls::Pulls;
 use octorust::types::{Order, PullsListSort, ReposListOrgSort, ReposListType, Repository};
 use octorust::{auth::Credentials, Client};
 use term_grid::{Cell, Direction, Filling, Grid, GridOptions};
-use tracing::{info, instrument};
+use tracing::{debug, info, instrument};
 
 /// Options for the scope of the repositories listed in the dashboard
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum, Default, Debug)]
@@ -86,7 +87,7 @@ impl Dashboard {
 
     /// Gather the data for the report from Github
     ///
-    #[instrument]
+    #[instrument(skip(self), fields(self.user = %self.user, self.repo_scope = ?self.repo_scope))]
     pub async fn finish(&mut self) -> Result<Self, Error> {
         info!("Finishing the dashboard configuration build.");
         let list_type = match self.repo_scope {
@@ -127,18 +128,7 @@ impl Dashboard {
             let archived = repo.archived;
             let mut pr_count = 0;
             if owned_by(&repo, &self.user) {
-                pr_count = pulls
-                    .list_all(
-                        &self.user,
-                        repo_name,
-                        octorust::types::IssuesListState::Open,
-                        "",
-                        "",
-                        PullsListSort::Created,
-                        Order::Asc,
-                    )
-                    .await?
-                    .len();
+                pr_count += pull_request_count(&pulls, &self.user, repo_name).await?;
             }
             repositories.push(Repo {
                 name: String::from(repo_name),
@@ -220,5 +210,33 @@ fn owned_by(repo: &Repository, user: &str) -> bool {
         owner.login == user
     } else {
         false
+    }
+}
+
+#[instrument(skip(pulls))]
+async fn pull_request_count(pulls: &Pulls, user: &str, repo: &str) -> Result<usize, Error> {
+    let all_pulls = pulls
+        .list_all(
+            user,
+            repo,
+            octorust::types::IssuesListState::Open,
+            "",
+            "",
+            PullsListSort::Created,
+            Order::Asc,
+        )
+        .await;
+
+    debug!("Success of request for all pulls: {:?}", &all_pulls.is_ok());
+
+    match all_pulls {
+        Ok(v) => Ok(v.len()),
+        Err(e) => {
+            debug!(
+                "Error returned seeking list of a all open pull requests:{:?}",
+                &e
+            );
+            Err(e.into())
+        }
     }
 }
