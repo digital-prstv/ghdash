@@ -55,7 +55,7 @@ fn get_logging(verbosity: log::LevelFilter) -> Result<(), Error> {
         .with(
             fmt::Layer::default()
                 .pretty()
-                .with_filter(EnvFilter::from(verbosity.to_string())),
+                .with_filter(EnvFilter::from(format!("ghdash={verbosity}"))),
         )
         .try_init()?;
 
