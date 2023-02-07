@@ -30,8 +30,6 @@ pub enum RepoScope {
 #[derive(Debug, Clone, Default)]
 struct Repo {
     name: String,
-    fork: bool,
-    archived: bool,
     pr_count: usize,
 }
 
@@ -57,7 +55,7 @@ impl Dashboard {
     /// Without a user and token to get data from Github the dashboard is meaningless
     /// therefore a new struct without this data is not meaningful
     ///
-    #[instrument]
+    #[instrument(skip(token))]
     pub fn builder(user: &str, token: &str) -> Result<Self, Error> {
         if user.is_empty() {
             return Err(Error::MustHaveUser);
@@ -78,7 +76,7 @@ impl Dashboard {
 
     /// Set the repo_scope for the Dashboard
     ///
-    #[instrument]
+    #[instrument(skip(self), fields(self.user = %self.user, self.repo_scope = ?self.repo_scope))]
     pub fn set_repo_scope(&mut self, repo_scope: RepoScope) -> &mut Self {
         info!("set the scope to {:#?}", &repo_scope);
         self.repo_scope = repo_scope;
@@ -87,7 +85,7 @@ impl Dashboard {
 
     /// Gather the data for the report from Github
     ///
-    #[instrument(skip(self), fields(self.user = %self.user, self.repo_scope = ?self.repo_scope))]
+    #[instrument(name = "Extract_dashboard_data", skip(self), fields(self.user = %self.user, self.repo_scope = ?self.repo_scope))]
     pub async fn finish(&mut self) -> Result<Self, Error> {
         info!("Finishing the dashboard configuration build.");
         let list_type = match self.repo_scope {
@@ -106,7 +104,7 @@ impl Dashboard {
         let pulls = github.pulls();
 
         info!("Access secured to github repositories and pull requests.\nGetting the base list of repositories.");
-        let repos_list = repos
+        let mut repos_list = repos
             .list_all_for_authenticated_user(
                 None,
                 "",
@@ -118,44 +116,48 @@ impl Dashboard {
             )
             .await?;
 
+        info!(
+            "Check if archived should be retained or removed ({:#?}).",
+            self.archived
+        );
+
+        if !self.archived {
+            repos_list.retain(|repo| !repo.archived);
+        }
+
+        match self.repo_scope {
+            RepoScope::Authored => {
+                info!("Remove forked repositories.");
+                repos_list.retain(|repo| !repo.fork);
+            }
+            RepoScope::Forked => {
+                info!("Retain only forked repositories.");
+                repos_list.retain(|repo| repo.fork);
+            }
+            _ => {}
+        }
+
         let mut repositories: Vec<Repo> = vec![];
 
         info!("Building list of repositories ({:#?}).", &repositories);
 
         for repo in repos_list {
             let repo_name = repo.name.as_str();
-            let fork = repo.fork;
-            let archived = repo.archived;
             let mut pr_count = 0;
+            info!(
+                "Checking for counting of {:?} with login {:?} for user {:?}",
+                &repo.name,
+                &repo.owner.clone().unwrap().login,
+                &self.user
+            );
             if owned_by(&repo, &self.user) {
+                info!("Counting pull requests for {:?}", &repo.name);
                 pr_count += pull_request_count(&pulls, &self.user, repo_name).await?;
             }
             repositories.push(Repo {
                 name: String::from(repo_name),
-                fork,
-                archived,
                 pr_count,
             });
-        }
-
-        info!(
-            "Check if archived should be retained or removed ({:#?}).",
-            self.archived
-        );
-        if !self.archived {
-            repositories.retain(|repo| !repo.archived);
-        }
-
-        match self.repo_scope {
-            RepoScope::Authored => {
-                info!("Remove forked repositories.");
-                repositories.retain(|repo| !repo.fork);
-            }
-            RepoScope::Forked => {
-                info!("Retain only forked repositories.");
-                repositories.retain(|repo| repo.fork);
-            }
-            _ => {}
         }
 
         self.repositories = repositories;
@@ -205,6 +207,7 @@ fn bold_yellow<T: ToString>(text: T) -> String {
     )
 }
 
+#[instrument]
 fn owned_by(repo: &Repository, user: &str) -> bool {
     if let Some(owner) = repo.owner.clone() {
         owner.login == user

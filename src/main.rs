@@ -6,7 +6,7 @@ use crate::config::GhConfig;
 use clap::Parser;
 use ghdash::{Dashboard, Error};
 use opentelemetry::{sdk::trace::Tracer, trace::TraceError};
-use tracing::{debug, info, span, Level};
+use tracing::{info, span, Level};
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::{fmt, prelude::*, EnvFilter};
 
@@ -37,8 +37,6 @@ async fn main() -> Result<(), Error> {
         .set_repo_scope(args.repositories.unwrap_or_default())
         .finish()
         .await?;
-
-    debug!(dashboard = ?dashboard);
 
     print!("{dashboard}");
 
