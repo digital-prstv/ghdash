@@ -16,3 +16,7 @@ Cargo.lock
 
 # coverage reports
 /coverage
+
+# performance data
+**/*flamegraph.svg
+**/perf*

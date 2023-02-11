@@ -18,6 +18,12 @@ pub enum Error {
     #[error("0:?")]
     Confy(#[from] confy::ConfyError),
     /// Error passed up from anyhow
-    #[error("0:?")]
+    #[error(transparent)]
     Anyhow(#[from] anyhow::Error),
+    /// Error passed up from opentelemetry trace
+    #[error("0:?")]
+    OpentelemetryTrace(#[from] opentelemetry::trace::TraceError),
+    /// Error passed up from tracing_subscriber try inita
+    #[error("0:?")]
+    TracingSubscriberTryInit(#[from] tracing_subscriber::util::TryInitError),
 }
