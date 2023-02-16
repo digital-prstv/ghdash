@@ -8,8 +8,12 @@ use std::sync::Arc;
 use crate::error::Error;
 use ansi_term::{Colour, Style};
 use clap::ValueEnum;
+use octorust::issues::Issues;
 use octorust::pulls::Pulls;
-use octorust::types::{Order, PullsListSort, ReposListOrgSort, ReposListType, Repository};
+use octorust::types::{
+    IssuesListSort, IssuesListState, Order, PullsListSort, ReposListOrgSort, ReposListType,
+    Repository,
+};
 use octorust::{auth::Credentials, Client};
 use term_grid::{Cell, Direction, Filling, Grid, GridOptions};
 use tokio::task::JoinHandle;
@@ -35,9 +39,14 @@ struct Repo {
     pr_count: usize,
 }
 
+enum GithubDocument {
+    PullRequest(Result<usize, Error>),
+    Issue(Result<usize, Error>),
+}
+
 struct RepoResult {
     name: String,
-    pr_count_res: Result<usize, Error>,
+    count_res: GithubDocument,
 }
 
 /// Struct Representing a Dashboard and key data required to create the dashboard
@@ -109,6 +118,7 @@ impl Dashboard {
 
         let repos = github.repos();
         let pulls = Arc::new(github.pulls());
+        let issues = Arc::new(github.issues());
 
         info!("Access secured to github repositories and pull requests.\nGetting the base list of repositories.");
         let mut repos_list = repos
@@ -154,16 +164,40 @@ impl Dashboard {
         info!("Building list of repositories ({:#?}).", &repositories);
 
         for repo in repos_list {
-            let t_repo = repo.name.clone();
             let t_pulls = pulls.clone();
+            let t_repo = repo.name.clone();
             let t_user = self.user.clone();
+
             info!("Counting pull requests for {:?}", &repo.name);
             let res: JoinHandle<RepoResult> = tokio::spawn(async move {
-                let pr_count_res =
-                    pull_request_count(&t_pulls, t_user.as_ref(), t_repo.as_ref()).await;
+                let count_res = count_github_documents(
+                    GithubDocClient::PullRequest(&t_pulls),
+                    t_user.as_ref(),
+                    t_repo.as_ref(),
+                )
+                .await;
                 RepoResult {
                     name: t_repo,
-                    pr_count_res,
+                    count_res: GithubDocument::PullRequest(count_res),
+                }
+            });
+            tasks.push(res);
+
+            let t_issues = issues.clone();
+            let t_repo = repo.name.clone();
+            let t_user = self.user.clone();
+
+            info!("Counting issue requests for {:?}", &repo.name);
+            let res: JoinHandle<RepoResult> = tokio::spawn(async move {
+                let count_res = count_github_documents(
+                    GithubDocClient::Issue(&t_issues),
+                    t_user.as_ref(),
+                    t_repo.as_ref(),
+                )
+                .await;
+                RepoResult {
+                    name: t_repo,
+                    count_res: GithubDocument::Issue(count_res),
                 }
             });
             tasks.push(res);
@@ -173,15 +207,26 @@ impl Dashboard {
             match task.await {
                 Ok(repo_res) => {
                     let name = repo_res.name;
-                    match repo_res.pr_count_res {
-                        Ok(pr_count) => {
-                            repositories.insert(name.clone(), Repo { name, pr_count });
-                        }
-                        Err(e) => warn!(
-                            "Error returned while fetching pull data for {:#?}: {:#?}",
-                            name, e
-                        ),
-                    };
+                    match repo_res.count_res {
+                        GithubDocument::PullRequest(result) => match result {
+                            Ok(pr_count) => {
+                                repositories.insert(name.clone(), Repo { name, pr_count });
+                            }
+                            Err(e) => warn!(
+                                "Error returned while fetching pull data for {:#?}: {:#?}",
+                                name, e
+                            ),
+                        },
+                        GithubDocument::Issue(result) => match result {
+                            Ok(pr_count) => {
+                                repositories.insert(name.clone(), Repo { name, pr_count });
+                            }
+                            Err(e) => warn!(
+                                "Error returned while fetching pull data for {:#?}: {:#?}",
+                                name, e
+                            ),
+                        },
+                    }
                 }
                 Err(e) => warn!("Join Error on task: {e}"),
             }
@@ -246,30 +291,76 @@ fn owned_by(repo: &Repository, user: &str) -> bool {
     }
 }
 
-#[instrument(skip(pulls))]
-async fn pull_request_count(pulls: &Pulls, user: &str, repo: &str) -> Result<usize, Error> {
-    let all_pulls = pulls
-        .list_all(
-            user,
-            repo,
-            octorust::types::IssuesListState::Open,
-            "",
-            "",
-            PullsListSort::Created,
-            Order::Asc,
-        )
-        .await;
+enum GithubDocClient<'a> {
+    PullRequest(&'a Pulls),
+    Issue(&'a Issues),
+}
 
-    debug!("Success of request for all pulls: {:?}", &all_pulls.is_ok());
+#[instrument(skip(doc_client))]
+async fn count_github_documents(
+    doc_client: GithubDocClient<'_>,
+    user: &str,
+    repo: &str,
+) -> Result<usize, Error> {
+    match doc_client {
+        GithubDocClient::PullRequest(pulls) => {
+            let all_pulls = pulls
+                .list_all(
+                    user,
+                    repo,
+                    octorust::types::IssuesListState::Open,
+                    "",
+                    "",
+                    PullsListSort::Created,
+                    Order::Asc,
+                )
+                .await;
 
-    match all_pulls {
-        Ok(v) => Ok(v.len()),
-        Err(e) => {
+            debug!("Success of request for all pulls: {:?}", &all_pulls.is_ok());
+
+            match all_pulls {
+                Ok(v) => Ok(v.len()),
+                Err(e) => {
+                    debug!(
+                        "Error returned seeking list of all open pull requests:{:?}",
+                        &e
+                    );
+                    Err(e.into())
+                }
+            }
+        }
+        GithubDocClient::Issue(issues) => {
+            let all_issues = issues
+                .list_all_for_repo(
+                    user,
+                    repo,
+                    "",
+                    IssuesListState::Open,
+                    "",
+                    "",
+                    "",
+                    "",
+                    IssuesListSort::Created,
+                    Order::Asc,
+                    None,
+                )
+                .await;
+
             debug!(
-                "Error returned seeking list of all open pull requests:{:?}",
-                &e
+                "Success of request for all pulls: {:?}",
+                &all_issues.is_ok()
             );
-            Err(e.into())
+
+            match all_issues {
+                Ok(v) => Ok(v.len()),
+                Err(e) => {
+                    debug!(
+                        "Error returned seeking list of all open pull requests:{:?}",
+                        &e
+                    );
+                    Err(e.into())
+                }
+            }
         }
     }
 }
