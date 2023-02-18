@@ -6,6 +6,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - ReleaseDate
 
+### Refactor
+
+- Use HashMap instead of Vec
+- Use HashMap instead of Vec
+- Only need issues count pulls seperatly
+- Use confy_table for better formatting
+
 ## [0.1.4] - 2023-02-11
 
 ### Features
