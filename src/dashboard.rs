@@ -1,17 +1,18 @@
 //! Dashboard module represents that data presented in the dashboard
 //!
 
-use std::fmt;
-use std::ops::Deref;
+use std::fmt::{self};
 use std::sync::Arc;
 
 use crate::error::Error;
-use ansi_term::{Colour, Style};
 use clap::ValueEnum;
-use octorust::pulls::Pulls;
-use octorust::types::{Order, PullsListSort, ReposListOrgSort, ReposListType, Repository};
+use comfy_table::presets::NOTHING;
+use comfy_table::{Attribute, Cell, CellAlignment, Color, Table, TableComponent};
+use octorust::issues::Issues;
+use octorust::types::{
+    IssuesListSort, IssuesListState, Order, ReposListOrgSort, ReposListType, Repository,
+};
 use octorust::{auth::Credentials, Client};
-use term_grid::{Cell, Direction, Filling, Grid, GridOptions};
 use tokio::task::JoinHandle;
 use tracing::{debug, info, instrument, warn};
 
@@ -33,6 +34,12 @@ pub enum RepoScope {
 struct Repo {
     name: String,
     pr_count: usize,
+    issue_count: usize,
+}
+
+struct RepoResult {
+    name: String,
+    count_res: Result<(usize, usize), Error>,
 }
 
 /// Struct Representing a Dashboard and key data required to create the dashboard
@@ -103,7 +110,7 @@ impl Dashboard {
         )?;
 
         let repos = github.repos();
-        let pulls = Arc::new(github.pulls());
+        let issues = Arc::new(github.issues());
 
         info!("Access secured to github repositories and pull requests.\nGetting the base list of repositories.");
         let mut repos_list = repos
@@ -143,22 +150,22 @@ impl Dashboard {
             _ => {}
         }
 
-        let mut repositories = vec![]; // : Vec<Repo>
+        let mut repositories = vec![]; // : Vec<Repo> // HashMap::new();
         let mut tasks = vec![];
 
         info!("Building list of repositories ({:#?}).", &repositories);
 
         for repo in repos_list {
+            let t_issues = issues.clone();
             let t_repo = repo.name.clone();
-            let t_pulls = pulls.clone();
             let t_user = self.user.clone();
-            info!("Counting pull requests for {:?}", &repo.name);
+
+            info!("Counting issue requests for {:?}", &repo.name);
             let res: JoinHandle<RepoResult> = tokio::spawn(async move {
-                let pr_count_res =
-                    pull_request_count(&t_pulls, t_user.as_ref(), t_repo.as_ref()).await;
+                let count_res = count_issues(&t_issues, t_user.as_ref(), t_repo.as_ref()).await;
                 RepoResult {
                     name: t_repo,
-                    pr_count_res,
+                    count_res,
                 }
             });
             tasks.push(res);
@@ -168,13 +175,21 @@ impl Dashboard {
             match task.await {
                 Ok(repo_res) => {
                     let name = repo_res.name;
-                    match repo_res.pr_count_res {
-                        Ok(pr_count) => repositories.push(Repo { name, pr_count }),
+                    match repo_res.count_res {
+                        Ok(counts) => {
+                            info!("The counts found are: {:?}", &counts);
+                            repositories.push(Repo {
+                                name,
+                                pr_count: counts.0,
+                                issue_count: counts.1,
+                            });
+                        }
                         Err(e) => warn!(
                             "Error returned while fetching pull data for {:#?}: {:#?}",
                             name, e
                         ),
-                    };
+                        // },
+                    }
                 }
                 Err(e) => warn!("Join Error on task: {e}"),
             }
@@ -185,50 +200,58 @@ impl Dashboard {
     }
 }
 
-struct RepoResult {
-    name: String,
-    pr_count_res: Result<usize, Error>,
-}
-
 impl fmt::Display for Dashboard {
     /// Build a table from the dashboard configuration and data
     ///
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let mut grid = Grid::new(GridOptions {
-            filling: Filling::Spaces(1),
-            direction: Direction::LeftToRight,
-        });
+        let mut table = Table::new();
+        table
+            .load_preset(NOTHING)
+            .set_style(TableComponent::HeaderLines, '═')
+            .set_style(TableComponent::MiddleHeaderIntersections, '═')
+            .set_style(TableComponent::BottomBorder, '─')
+            .set_style(TableComponent::BottomBorderIntersections, '─')
+            .set_header(vec![
+                Cell::new("Repository")
+                    .add_attribute(Attribute::Bold)
+                    .set_alignment(CellAlignment::Center),
+                Cell::new("PRs")
+                    .add_attribute(Attribute::Bold)
+                    .set_alignment(CellAlignment::Center),
+                Cell::new("Issues")
+                    .add_attribute(Attribute::Bold)
+                    .set_alignment(CellAlignment::Center),
+            ]);
 
-        // Add the headings
-        grid.add(Cell::from(heading("Repository        ")));
-        grid.add(Cell::from(heading("PR Count")));
-
-        for repo in self.repositories.deref() {
-            grid.add(Cell::from(repo.name.clone()));
-            let count = repo.pr_count;
-            if 0 < count {
-                grid.add(Cell::from(bold_yellow(count)));
+        for repo in self.repositories.clone().into_iter() {
+            let repo_name = Cell::new(repo.name);
+            let prs = if 0 < repo.pr_count {
+                Cell::new(repo.pr_count)
+                    .fg(Color::Yellow)
+                    .add_attribute(Attribute::Bold)
+                    .set_alignment(CellAlignment::Center)
             } else {
-                grid.add(Cell::from(repo.pr_count.to_string()));
-            }
+                Cell::new(repo.pr_count)
+                    .fg(Color::White)
+                    .add_attribute(Attribute::NoBold)
+                    .set_alignment(CellAlignment::Center)
+            };
+            let issues = if 0 < repo.pr_count {
+                Cell::new(repo.issue_count)
+                    .fg(Color::Yellow)
+                    .add_attribute(Attribute::Bold)
+                    .set_alignment(CellAlignment::Center)
+            } else {
+                Cell::new(repo.issue_count)
+                    .fg(Color::White)
+                    .add_attribute(Attribute::NoBold)
+                    .set_alignment(CellAlignment::Center)
+            };
+            table.add_row(vec![repo_name, prs, issues]);
         }
 
-        write!(f, "{}", grid.fit_into_columns(2))
+        writeln!(f, "{table}")
     }
-}
-
-fn heading(heading: &str) -> String {
-    format!("{}", Style::new().bold().paint(heading))
-}
-
-fn bold_yellow<T: ToString>(text: T) -> String {
-    format!(
-        "{}",
-        Style::new()
-            .bold()
-            .fg(Colour::Fixed(220))
-            .paint(text.to_string())
-    )
 }
 
 #[instrument(skip(repo) fields(repo.name))]
@@ -244,24 +267,46 @@ fn owned_by(repo: &Repository, user: &str) -> bool {
     }
 }
 
-#[instrument(skip(pulls))]
-async fn pull_request_count(pulls: &Pulls, user: &str, repo: &str) -> Result<usize, Error> {
-    let all_pulls = pulls
-        .list_all(
+#[instrument(skip(issues))]
+async fn count_issues(
+    issues: &Arc<Issues>,
+    user: &str,
+    repo: &str,
+) -> Result<(usize, usize), Error> {
+    let all_issues = issues
+        .list_all_for_repo(
             user,
             repo,
-            octorust::types::IssuesListState::Open,
+            "",
+            IssuesListState::Open,
             "",
             "",
-            PullsListSort::Created,
+            "",
+            "",
+            IssuesListSort::Created,
             Order::Asc,
+            None,
         )
         .await;
 
-    debug!("Success of request for all pulls: {:?}", &all_pulls.is_ok());
+    debug!(
+        "Success of request for all issues: {:?}",
+        &all_issues.is_ok()
+    );
 
-    match all_pulls {
-        Ok(v) => Ok(v.len()),
+    match all_issues {
+        Ok(v) => {
+            let mut pr_count = 0;
+            let mut issue_count = 0;
+
+            for issue in v {
+                match issue.pull_request {
+                    Some(_) => pr_count += 1,
+                    None => issue_count += 1,
+                }
+            }
+            Ok((pr_count, issue_count))
+        }
         Err(e) => {
             debug!(
                 "Error returned seeking list of all open pull requests:{:?}",
