@@ -14,7 +14,7 @@ clap = { version = "4.0.26", features = ["derive", "cargo"] }
 clap-verbosity-flag = "2.0.0"
 comfy-table = "6.1.4"
 confy = "0.5.1"
-log = "0.4.17"
+log = "0.4.20"
 octorust = { path = "../third-party-api-clients/github" }
 opentelemetry = "0.18.0"
 opentelemetry-jaeger = "0.17.0"
