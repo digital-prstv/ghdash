@@ -27,7 +27,7 @@ tracing-opentelemetry = "0.18.0"
 tracing-subscriber = { version = "0.3.16", features = ["std", "env-filter"] }
 
 [dev-dependencies]
-trycmd = "0.14.4"
+trycmd = "0.14.19"
 
 [lib]
 name = "ghdash"
