@@ -18,8 +18,8 @@ log = "0.4.20"
 octorust = { path = "../third-party-api-clients/github" }
 opentelemetry = "0.21.0"
 opentelemetry-jaeger = "0.20.0"
-serde = { version = "1.0.193", features = ["derive"] }
-serde_derive = "1.0.193"
+serde = { version = "1.0.194", features = ["derive"] }
+serde_derive = "1.0.194"
 thiserror = "1.0.53"
 tokio = { version = "1.35.1", features = ["macros", "rt-multi-thread"] }
 tracing = "0.1.40"
