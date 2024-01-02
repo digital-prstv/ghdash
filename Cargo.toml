@@ -20,7 +20,7 @@ opentelemetry = "0.21.0"
 opentelemetry-jaeger = "0.20.0"
 serde = { version = "1.0.194", features = ["derive"] }
 serde_derive = "1.0.194"
-thiserror = "1.0.53"
+thiserror = "1.0.56"
 tokio = { version = "1.35.1", features = ["macros", "rt-multi-thread"] }
 tracing = "0.1.40"
 tracing-opentelemetry = "0.22.0"
