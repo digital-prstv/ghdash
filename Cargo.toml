@@ -15,7 +15,7 @@ clap-verbosity-flag = "2.1.1"
 comfy-table = "7.1.0"
 confy = "0.5.1"
 log = "0.4.20"
-octorust = { path = "../third-party-api-clients/github" }
+octorust = "0.7"
 opentelemetry = "0.21.0"
 opentelemetry-jaeger = "0.20.0"
 serde = { version = "1.0.194", features = ["derive"] }
