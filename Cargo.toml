@@ -13,7 +13,7 @@ anyhow = "1.0.79"
 clap = { version = "4.4.14", features = ["derive", "cargo"] }
 clap-verbosity-flag = "2.1.1"
 comfy-table = "7.1.0"
-confy = "0.5.1"
+confy = "0.6.0"
 log = "0.4.20"
 octorust = "0.7"
 opentelemetry = "0.21.0"
