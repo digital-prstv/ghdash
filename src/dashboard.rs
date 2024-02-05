@@ -114,7 +114,7 @@ impl Dashboard {
         let issues = Arc::new(github.issues());
 
         info!("Access secured to github repositories and pull requests.\nGetting the base list of repositories.");
-        let mut repos_list = repos
+        let repos_list = repos
             .list_all_for_authenticated_user(
                 ReposListVisibility::All,
                 "",
@@ -125,6 +125,12 @@ impl Dashboard {
                 None,
             )
             .await?;
+
+        if !repos_list.status.is_success() {
+            return Err(Error::HttpErrorCode(repos_list.status.as_u16()));
+        }
+
+        let mut repos_list = repos_list.body;
 
         info!("Remove un-owned repositories.");
         repos_list.retain(|repo| owned_by(repo, &self.user));
