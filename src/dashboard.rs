@@ -303,11 +303,17 @@ async fn count_issues(
     );
 
     match all_issues {
-        Ok(v) => {
+        Ok(issues_list) => {
             let mut pr_count = 0;
             let mut issue_count = 0;
 
-            for issue in v {
+            if !issues_list.status.is_success() {
+                return Err(Error::HttpErrorCode(issues_list.status.as_u16()));
+            }
+
+            let issues_list = issues_list.body;
+
+            for issue in issues_list {
                 match issue.pull_request {
                     Some(_) => pr_count += 1,
                     None => issue_count += 1,
