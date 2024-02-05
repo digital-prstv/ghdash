@@ -10,7 +10,8 @@ use comfy_table::presets::NOTHING;
 use comfy_table::{Attribute, Cell, CellAlignment, Color, Table, TableComponent};
 use octorust::issues::Issues;
 use octorust::types::{
-    IssuesListSort, IssuesListState, Order, ReposListOrgSort, ReposListType, Repository,
+    IssuesListSort, IssuesListState, Order, ReposListOrgSort, ReposListType, ReposListVisibility,
+    Repository,
 };
 use octorust::{auth::Credentials, Client};
 use tokio::task::JoinHandle;
@@ -115,9 +116,9 @@ impl Dashboard {
         info!("Access secured to github repositories and pull requests.\nGetting the base list of repositories.");
         let mut repos_list = repos
             .list_all_for_authenticated_user(
-                None,
+                ReposListVisibility::All,
                 "",
-                Some(list_type),
+                list_type,
                 ReposListOrgSort::FullName,
                 Order::Asc,
                 None,
