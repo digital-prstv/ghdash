@@ -15,5 +15,4 @@ Provide a command line application to display a dashboard of statistics about a 
   - [X] Show forked repos only
   - [X] Show public repos
   - [X] Show private repos only
-  - [ ] Show all repos including archived 
-
+  - [ ] Show all repos including archived

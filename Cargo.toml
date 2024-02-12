@@ -5,6 +5,7 @@ version = "0.1.6"
 description = "Dashboard for Github account"
 edition = "2021"
 publish = false
+rust-version = "1.74"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -21,7 +22,7 @@ opentelemetry-jaeger = { version = "0.20.0", features = ["rt-tokio"] }
 opentelemetry_sdk = { version = "0.21.2", features = ["tokio", "rt-tokio"] }
 serde = { version = "1.0.195", features = ["derive"] }
 serde_derive = "1.0.195"
-thiserror = "1.0.56"
+thiserror = "1.0.57"
 tokio = { version = "1.35.1", features = ["macros", "rt-multi-thread"] }
 tracing = "0.1.40"
 tracing-opentelemetry = "0.22.0"
