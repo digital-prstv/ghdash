@@ -6,6 +6,24 @@ description = "Dashboard for Github account"
 edition = "2021"
 publish = false
 rust-version = "1.74"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/jerusdp/ghdash"
+documentation = "https://docs.rs/ghdash"
+readme = "README.md"
+categories = [
+    "command-line-interface",
+    "command-line-utilities",
+    "development-tools",
+]
+keywords = ["github", "cli"]
+include = [
+    "**/*.rs",
+    "Cargo.toml",
+    "README.md",
+    "LICENSE-MIT",
+    "LICENSE-APACHE",
+    "CHANGES.md",
+]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
