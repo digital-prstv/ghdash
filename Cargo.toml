@@ -30,7 +30,7 @@ include = [
 [dependencies]
 anyhow = "1.0.79"
 clap = { version = "4.5.0", features = ["derive", "cargo"] }
-clap-verbosity-flag = "2.1.2"
+clap-verbosity-flag = "2.2.0"
 comfy-table = "7.1.0"
 confy = "0.6.0"
 log = "0.4.20"
