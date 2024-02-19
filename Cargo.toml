@@ -47,7 +47,7 @@ tracing-opentelemetry = "0.22.0"
 tracing-subscriber = { version = "0.3.18", features = ["std", "env-filter"] }
 
 [patch.crates-io]
-octorust = { path = "../third-party-api-clients/github" }
+octorust = { git = 'https://github.com/jerusdp/octorust.git' }
 
 [dev-dependencies]
 trycmd = "0.15.0"
