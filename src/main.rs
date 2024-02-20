@@ -9,6 +9,7 @@ use opentelemetry::global;
 use opentelemetry::trace::TraceError;
 use opentelemetry_sdk::runtime::Tokio;
 use opentelemetry_sdk::trace::Tracer;
+
 use tracing::{info, span, Level};
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::{fmt, prelude::*, EnvFilter};
@@ -67,9 +68,8 @@ fn get_logging(verbosity: log::LevelFilter) -> Result<(), Error> {
 }
 
 fn init_tracer() -> Result<Tracer, TraceError> {
-    global::set_text_map_propagator(opentelemetry_jaeger::Propagator::new());
-
-    opentelemetry_jaeger::new_agent_pipeline()
+    global::set_text_map_propagator(opentelemetry_zipkin::Propagator::new());
+    opentelemetry_zipkin::new_pipeline()
         .with_service_name("ghdash")
         .install_batch(Tokio)
 }
