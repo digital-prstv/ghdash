@@ -1,6 +1,8 @@
 mod cli;
 mod config;
 
+use std::collections::HashMap;
+
 use crate::cli::GhDashCli;
 use crate::config::GhConfig;
 use clap::Parser;
@@ -20,7 +22,7 @@ const APP_NAME: &str = clap::crate_name!();
 async fn main() -> Result<(), Error> {
     let args = GhDashCli::parse();
 
-    get_logging(args.logging.log_level_filter())?;
+    get_logging(args.logging.log_level_filter()).await?;
 
     let config_name = args.config;
     let config_name = config_name.as_deref();
@@ -49,21 +51,24 @@ async fn main() -> Result<(), Error> {
     Ok(())
 }
 
-fn get_logging(verbosity: log::LevelFilter) -> Result<(), Error> {
-    let tracer = init_tracer()?;
-    tracing_subscriber::registry()
-        .with(tracing_subscriber::EnvFilter::new("TRACE"))
-        .with(tracing_opentelemetry::layer().with_tracer(tracer))
-        .with(
-            fmt::Layer::default()
-                .pretty()
-                .with_filter(EnvFilter::from(format!("ghdash={verbosity}"))),
-        )
-        .try_init()?;
+async fn get_logging(verbosity: log::LevelFilter) -> Result<(), Error> {
+    println!("Initialise logging");
+    if zipkin_container_running().await {
+        let tracer = init_tracer()?;
+        tracing_subscriber::registry()
+            .with(tracing_subscriber::EnvFilter::new("TRACE"))
+            .with(tracing_opentelemetry::layer().with_tracer(tracer))
+            .with(
+                fmt::Layer::default()
+                    .pretty()
+                    .with_filter(EnvFilter::from(format!("ghdash={verbosity}"))),
+            )
+            .try_init()?;
 
-    let span = span!(Level::INFO, "logging initiatilisation");
-    let _guard = span.enter();
-    info!("Initialised full tracing and logging to console at {verbosity}");
+        let span = span!(Level::INFO, "logging initiatilisation");
+        let _guard = span.enter();
+        info!("Initialised full tracing and logging to console at {verbosity}");
+    }
     Ok(())
 }
 
@@ -72,4 +77,32 @@ fn init_tracer() -> Result<Tracer, TraceError> {
     opentelemetry_zipkin::new_pipeline()
         .with_service_name("ghdash")
         .install_batch(Tokio)
+}
+
+use bollard::container::ListContainersOptions;
+
+async fn zipkin_container_running() -> bool {
+    const TRACER_IMAGE: &str = "openzipkin/zipkin";
+    let docker = bollard::Docker::connect_with_unix(
+        "/home/gorta/.docker/desktop/docker.sock",
+        120,
+        bollard::API_DEFAULT_VERSION,
+    )
+    .unwrap();
+
+    let mut filters = HashMap::new();
+    filters.insert(String::from("ancestor"), vec![String::from(TRACER_IMAGE)]);
+    filters.insert(String::from("status"), vec![String::from("running")]);
+
+    let containers = docker
+        .list_containers(Some(ListContainersOptions::<String> {
+            all: true,
+            filters,
+            ..Default::default()
+        }))
+        .await
+        .unwrap();
+
+    println!("The container is running {}", !containers.is_empty());
+    !containers.is_empty()
 }
