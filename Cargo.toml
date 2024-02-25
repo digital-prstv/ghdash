@@ -36,7 +36,7 @@ confy = "0.6.0"
 log = "0.4.20"
 octorust = "0.7"
 opentelemetry = "0.21.0"
-opentelemetry-jaeger = { version = "0.20.0", features = ["rt-tokio"] }
+opentelemetry-jaeger = { version = "0.21.0", features = ["rt-tokio"] }
 opentelemetry_sdk = { version = "0.21.2", features = ["tokio", "rt-tokio"] }
 serde = { version = "1.0.197", features = ["derive"] }
 serde_derive = "1.0.197"
