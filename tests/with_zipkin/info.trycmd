@@ -1,0 +1,96 @@
+```console
+$ ghdash -vv
+  [2m[..][0m [32m INFO[0m [1;32mghdash[0m[32m: [32mInitialise logging to console at INFO[0m
+    [2;3mat[0m src/main.rs:88
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mStarting to build the dashboard.[0m
+    [2;3mat[0m src/dashboard.rs:78
+    [2;3min[0m ghdash::dashboard::[1mbuilder[0m [2;3mwith[0m [1muser[0m: "jerusdp"
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mset the scope to Authored[0m
+    [2;3mat[0m src/dashboard.rs:91
+    [2;3min[0m ghdash::dashboard::[1mset_repo_scope[0m [2;3mwith[0m [1mrepo_scope[0m: Authored, [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mFinishing the dashboard configuration build.[0m
+    [2;3mat[0m src/dashboard.rs:100
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mAccess secured to github repositories and pull requests.
+Getting the base list of repositories.[0m
+    [2;3mat[0m src/dashboard.rs:116
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mRemove un-owned repositories.[0m
+    [2;3mat[0m src/dashboard.rs:131
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mCheck if archived should be retained or removed (false).[0m
+    [2;3mat[0m src/dashboard.rs:134
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mRemoving archived repos from the list[0m
+    [2;3mat[0m src/dashboard.rs:140
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mRemove forked repositories.[0m
+    [2;3mat[0m src/dashboard.rs:146
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mBuilding list of repositories ([]).[0m
+    [2;3mat[0m src/dashboard.rs:159
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mCounting issue requests for "ghdash"[0m
+    [2;3mat[0m src/dashboard.rs:166
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mCounting issue requests for "hcaptcha-rs"[0m
+    [2;3mat[0m src/dashboard.rs:166
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mCounting issue requests for "lambda_sqs"[0m
+    [2;3mat[0m src/dashboard.rs:166
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mCounting issue requests for "mockd"[0m
+    [2;3mat[0m src/dashboard.rs:166
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mCounting issue requests for "named-colour"[0m
+    [2;3mat[0m src/dashboard.rs:166
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mCounting issue requests for "octorust"[0m
+    [2;3mat[0m src/dashboard.rs:166
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mThe counts found are: (4, 1)[0m
+    [2;3mat[0m src/dashboard.rs:183
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mThe counts found are: (0, 3)[0m
+    [2;3mat[0m src/dashboard.rs:183
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mThe counts found are: (0, 1)[0m
+    [2;3mat[0m src/dashboard.rs:183
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mThe counts found are: (0, 6)[0m
+    [2;3mat[0m src/dashboard.rs:183
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mThe counts found are: (0, 1)[0m
+    [2;3mat[0m src/dashboard.rs:183
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  [2m[..][0m [32m INFO[0m [1;32mghdash::dashboard[0m[32m: [32mThe counts found are: (1, 1)[0m
+    [2;3mat[0m src/dashboard.rs:183
+    [2;3min[0m ghdash::dashboard::[1mExtract_dashboard_data[0m [2;3mwith[0m [1mself.user[0m: jerusdp, [1mself.repo_scope[0m: Authored
+
+  Repository    PRs   Issues 
+═════════════════════════════
+...
+─────────────────────────────
+
+```
