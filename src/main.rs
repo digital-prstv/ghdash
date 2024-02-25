@@ -52,7 +52,6 @@ async fn main() -> Result<(), Error> {
 }
 
 async fn get_logging(verbosity: log::LevelFilter) -> Result<(), Error> {
-    println!("Initialise logging");
     if zipkin_container_running().await {
         let tracer = init_tracer()?;
         tracing_subscriber::registry()
@@ -68,6 +67,25 @@ async fn get_logging(verbosity: log::LevelFilter) -> Result<(), Error> {
         let span = span!(Level::INFO, "logging initiatilisation");
         let _guard = span.enter();
         info!("Initialised full tracing and logging to console at {verbosity}");
+    } else {
+        let filter = EnvFilter::from(format!(
+            "ghdash={}",
+            if verbosity == log::LevelFilter::Trace {
+                log::LevelFilter::Debug
+            } else {
+                verbosity
+            }
+        ));
+
+        let log_subscriber = tracing_subscriber::FmtSubscriber::builder()
+            .pretty()
+            .with_env_filter(filter)
+            .finish();
+
+        let _ = tracing::subscriber::set_global_default(log_subscriber)
+            .map_err(|_| eprintln!("Unable to set global default subscriber!"));
+
+        info!("Initialise logging to console at {verbosity}");
     }
     Ok(())
 }
@@ -103,6 +121,5 @@ async fn zipkin_container_running() -> bool {
         .await
         .unwrap();
 
-    println!("The container is running {}", !containers.is_empty());
     !containers.is_empty()
 }
