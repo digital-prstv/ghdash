@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# make sure I know where I am 
+
+cd "$(dirname "$0")" || exit
+SCRIPT_DIR="$(pwd)"
+echo "Script directory: $SCRIPT_DIR"
+
+# clean out the without_zipkin files
+
+rm -rf ../tests/without_zipkin/*
+
+# make symbolic link to files in the with_zipkin directory
+# cddirectory_where_the files_are
+cd ../tests/with_zipkin || exit
+for x in *
+do
+    ln -s "../with_zipkin/$x" "../without_zipkin/$x"
+    echo "Linked: $x"
+done
