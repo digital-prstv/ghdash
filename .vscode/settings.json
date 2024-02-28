@@ -9,14 +9,20 @@
         "mgmt"
     ],
     "cSpell.words": [
+        "dynomite",
+        "fakeit",
         "ghdash",
         "mbuilder",
+        "mchecking",
+        "mcount",
         "mghdash",
         "mockd",
+        "mowned",
         "mrepo",
         "mself",
         "mset",
         "mwith",
-        "octorust"
+        "octorust",
+        "rlinks"
     ]
 }
