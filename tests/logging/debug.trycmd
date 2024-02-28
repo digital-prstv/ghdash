@@ -1,0 +1,7 @@
+```console
+$ ghdash -vvv
+  [2m[..][0m [32m INFO[0m [1;32mghdash[0m[32m: [32mInitialise [MESSAGE] to console at DEBUG[0m
+    [2;3mat[0m src/main.rs:88
+...
+
+```

@@ -1,5 +1,8 @@
 ```console
-$ ghdash 
+$ ghdash -vv
+  [2m[..][0m [32m INFO[0m [1;32mghdash[0m[32m: [32mInitialise [MESSAGE] to console at INFO[0m
+    [2;3mat[0m src/main.rs:88
+...
   Repository    PRs   Issues 
 ═════════════════════════════
 ...

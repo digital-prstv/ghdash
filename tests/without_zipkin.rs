@@ -1,6 +1,7 @@
 #[test]
 fn without_zipkin_tests() {
     trycmd::TestCases::new()
-        // .case("README.md")
-        .case("tests/without_zipkin/*.trycmd");
+        .case("tests/logging/*.trycmd")
+        .insert_var("[MESSAGE]", "logging")
+        .unwrap();
 }

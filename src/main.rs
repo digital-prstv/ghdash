@@ -66,7 +66,7 @@ async fn get_logging(verbosity: log::LevelFilter) -> Result<(), Error> {
 
         let span = span!(Level::INFO, "logging initiatilisation");
         let _guard = span.enter();
-        info!("Initialised full tracing and logging to console at {verbosity}");
+        info!("Initialised tracing and logging to console at {verbosity}");
     } else {
         let filter = EnvFilter::from(format!(
             "ghdash={}",
