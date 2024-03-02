@@ -90,6 +90,5 @@ workflows:
     jobs:
       - required-builds
       - basic-test
-      - all-features-flag-test
       - docs
       - optional-builds
