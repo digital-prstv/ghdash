@@ -99,6 +99,7 @@ fn init_tracer() -> Result<Tracer, TraceError> {
         .install_batch(Tokio)
 }
 
+#[derive(Debug)]
 enum DockerConnection {
     Connection(Docker),
     NoConnection,
@@ -113,25 +114,30 @@ async fn connect_docker() -> DockerConnection {
     println!("The connection result is {connection:?}");
     let mut docker = connection.unwrap();
 
-    match docker.ping().await {
-        Ok(_) => println!("Connected!"),
-        Err(_) => {
-            connection = bollard::Docker::connect_with_local_defaults();
-            println!("The connection result is {connection:?}");
-            docker = connection.unwrap();
-        }
-    }
-
-    match docker.ping().await {
+    let result = match docker.ping().await {
         Ok(_) => {
             println!("Connected!");
             DockerConnection::Connection(docker)
         }
-        Err(e) => {
-            println!("Connection error: {:?}", e);
-            DockerConnection::NoConnection
+        Err(_) => {
+            connection = bollard::Docker::connect_with_local_defaults();
+            println!("The connection result is {connection:?}");
+            docker = connection.unwrap();
+
+            match docker.ping().await {
+                Ok(_) => {
+                    println!("Connected!");
+                    DockerConnection::Connection(docker)
+                }
+                Err(e) => {
+                    println!("Connection error: {:?}", e);
+                    DockerConnection::NoConnection
+                }
+            }
         }
-    }
+    };
+    println!("connect_docker result {result:?}");
+    result
 }
 
 async fn zipkin_container_running(docker: DockerConnection) -> bool {
