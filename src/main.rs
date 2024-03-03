@@ -104,20 +104,23 @@ async fn connect_docker() -> Docker {
         "/home/gorta/.docker/desktop/docker.sock",
         120,
         bollard::API_DEFAULT_VERSION,
-    )
-    .unwrap();
+    );
+    println!("The connection result is {connection:?}");
+    let mut docker = connection.unwrap();
 
-    match connection.ping().await {
+    match docker.ping().await {
         Ok(_) => println!("Connected!"),
         Err(_) => {
-            connection = bollard::Docker::connect_with_local_defaults().unwrap();
+            connection = bollard::Docker::connect_with_local_defaults();
+            println!("The connection result is {connection:?}");
+            docker = connection.unwrap();
         }
     }
 
-    if connection.ping().await.is_ok() {
+    if docker.ping().await.is_ok() {
         println!("Connected!")
     };
-    connection
+    docker
 }
 
 async fn zipkin_container_running(docker: Docker) -> bool {
