@@ -8,6 +8,8 @@
 //! token: the token granting access to the repositories
 //!
 
+use std::ffi::OsString;
+
 use serde_derive::{Deserialize, Serialize};
 
 #[derive(Default, Debug, Serialize, Deserialize, Clone)]
@@ -26,12 +28,32 @@ impl GhConfig {
         self
     }
 
+    pub fn try_env_user(&mut self, prefix: &str) -> &mut Self {
+        let key = OsString::from(format!("{prefix}_USER").to_uppercase());
+
+        if let Ok(env_user) = std::env::var(key) {
+            self.user = env_user;
+        };
+
+        self
+    }
+
     pub fn token(&self) -> String {
         self.token.clone()
     }
 
     pub fn set_token(&mut self, token: &str) -> &mut Self {
         self.token = token.to_string();
+        self
+    }
+
+    pub fn try_env_token(&mut self, prefix: &str) -> &mut Self {
+        let key = OsString::from(format!("{prefix}_TOKEN").to_uppercase());
+
+        if let Ok(env_token) = std::env::var(key) {
+            self.token = env_token;
+        };
+
         self
     }
 }
