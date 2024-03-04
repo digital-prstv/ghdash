@@ -12,11 +12,20 @@ use tracing::{info, span, Level};
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::{fmt, prelude::*, EnvFilter};
 
+/// # Get Logging
+///
 /// Get the logging setup
 ///
-/// In the case wheren tracing is available (ZIpkin container running) configure tracing
-/// and logging in line with the verbosity specifeid when the programme was run, otherwise,
-/// enable logging in line with the verbosity specifeid.
+/// Test for the availability of a running zipkin container to capture tracing output.
+///
+/// - If tracing is available start logging and tracing.
+/// - Else start logging only.
+///
+/// In either case logging is set according to the `verbosity`. Tracing traces to `Trace` level.
+///
+/// #### Returns
+///
+/// Returns a null result if successful or passes up the error in the event of an error condition.
 ///
 pub async fn get_logging(verbosity: log::LevelFilter) -> Result<(), Error> {
     if zipkin_container_running(connect_docker().await).await {
@@ -64,17 +73,15 @@ fn init_tracer() -> Result<Tracer, TraceError> {
         .install_batch(Tokio)
 }
 
-/// Enum Representing a Docker Connection
+/// # DockerConnection
 ///
-/// ## Variants
-/// - Connection(Docker) - a connection has been configured and verified. Supplied within the tupple.
-/// - NoConnection - No connection has been succesfully created and verified.
+/// Enum Representing a Docker Connection
 ///
 #[derive(Debug)]
 pub enum DockerConnection {
-    /// connection is successful and supplied within the variant.
+    /// wraps the verified Docker connection configuration.
     Connection(Docker),
-    /// No connection has been created and verified.
+    /// No verified configuraiton has been found.
     NoConnection,
 }
 
@@ -82,8 +89,13 @@ pub enum DockerConnection {
 ///
 /// The connection is configured either by the default (dev) configuration or using
 /// a default setup. Once created the connection is verified by pinging.
-/// If the ping fails then [NoConnection] is returned else the successful connection is
-/// returned wrapped in the [Connection] variant of the [DockerConnection] enum.
+///
+/// #### Return
+///
+/// The result is a variant of the [DockerConnection] enum.
+///
+/// - `NoConnection` is returned if a verified connection cannot be found.
+/// - `Connection` wraps the verified connection if verification is successful.
 ///
 pub async fn connect_docker() -> DockerConnection {
     let mut connection = bollard::Docker::connect_with_unix(

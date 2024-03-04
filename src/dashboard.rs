@@ -45,11 +45,6 @@ struct RepoResult {
 
 /// Struct Representing a Dashboard and key data required to create the dashboard
 ///
-/// ## Fields
-/// - user - the github user for which the dashboard is created
-/// - token - a personal access token for the user that provides access to the github API
-/// - repositories - a list of the user's repositories presented in the dashboard
-///
 #[derive(Debug, Clone, Default)]
 pub struct Dashboard {
     user: String,
