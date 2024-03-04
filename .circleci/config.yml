@@ -53,7 +53,7 @@ jobs:
           version: default
       - run:
           name: Install Docker client
-          command: apt install docker-cli
+          command: apk add docker-cli
       - run: cargo --version
       - run:
           name: Check formatting for code
