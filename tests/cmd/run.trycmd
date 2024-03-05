@@ -2,7 +2,12 @@
 $ ghdash 
   Repository    PRs   Issues 
 ═════════════════════════════
-...
+ ghdash          6       1   
+ hcaptcha-rs     1       3   
+ lambda_sqs      0       1   
+ mockd           0       6   
+ named-colour    0       1   
+ octorust        2       1   
 ─────────────────────────────
 
 ```

@@ -35,34 +35,38 @@ async fn main() -> Result<(), Error> {
         confy::store(APP_NAME, config_name, cfg.clone())?;
     }
 
-    match args.command {
-        Commands::List => {
-            let docker_connection = ghdash::connect_docker().await;
-            match docker_connection {
-                DockerConnection::Connection(docker) => {
-                    println!("Got a connection: {:#?}", docker);
-                    let containers = docker
-                        .list_containers(Some(
-                            bollard::container::ListContainersOptions::<String> {
+    if let Some(command) = args.command {
+        match command {
+            Commands::List => {
+                let docker_connection = ghdash::connect_docker().await;
+                match docker_connection {
+                    DockerConnection::Connection(docker) => {
+                        println!("Got a connection: {:#?}", docker);
+                        let containers = docker
+                            .list_containers(Some(bollard::container::ListContainersOptions::<
+                                String,
+                            > {
                                 all: true,
                                 // filters,
                                 ..Default::default()
-                            },
-                        ))
-                        .await
-                        .unwrap();
+                            }))
+                            .await
+                            .unwrap();
 
-                    println!("List of Containers and Status");
+                        println!("List of Containers and Status");
 
-                    for container in containers {
-                        println!(
-                            "-> Name: {:?}\tStatus: {:?},\tImage: {:?}",
-                            container.names, container.status, container.image
-                        );
+                        for container in containers {
+                            println!(
+                                "-> Name: {:?}\tStatus: {:?},\tImage: {:?}",
+                                container.names.unwrap(),
+                                container.status.unwrap(),
+                                container.image.unwrap()
+                            );
+                        }
+                        println!();
                     }
-                    println!();
+                    DockerConnection::NoConnection => println!("No docker connection"),
                 }
-                DockerConnection::NoConnection => println!("No docker connection"),
             }
         }
     }

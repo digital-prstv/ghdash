@@ -28,7 +28,7 @@ pub struct GhDashCli {
     #[arg(value_enum, short, long)]
     pub(crate) repositories: Option<RepoScope>,
     #[command(subcommand)]
-    pub(crate) command: Commands,
+    pub(crate) command: Option<Commands>,
 }
 
 #[derive(Debug, Subcommand)]
