@@ -56,8 +56,8 @@ async fn main() -> Result<(), Error> {
 
                     for container in containers {
                         println!(
-                            "-> Name {:?}\tStatus {:?}",
-                            container.names, container.status
+                            "-> Name: {:?}\tStatus: {:?},\tImage: {:?}",
+                            container.names, container.status, container.image
                         );
                     }
                     println!();
