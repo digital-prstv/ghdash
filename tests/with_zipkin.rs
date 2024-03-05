@@ -35,10 +35,8 @@ async fn with_zipkin_tests() {
 }
 
 async fn ensure_container_started(docker: &Docker, name: &str, image: &str) -> String {
-    println!("Checking for a container to use, start or create if required");
     match zipkin_container_running(docker).await {
         ContainerState::Stopped(container) => {
-            println!("Found a stopped container: {container:?}");
             start_container(docker, &container).await;
             container
         }
@@ -59,7 +57,6 @@ enum ContainerState {
 
 async fn zipkin_container_running(docker: &Docker) -> ContainerState {
     const TRACER_IMAGE: &str = "openzipkin/zipkin";
-    println!("Checking for running container");
     let mut filters = HashMap::new();
     filters.insert(String::from("ancestor"), vec![String::from(TRACER_IMAGE)]);
     filters.insert(String::from("status"), vec![String::from("running")]);
@@ -74,7 +71,6 @@ async fn zipkin_container_running(docker: &Docker) -> ContainerState {
         .unwrap();
 
     if !containers.is_empty() {
-        println!("Found a running container: {:?}", containers);
         ContainerState::Started(containers[0].names.as_ref().unwrap()[0].clone())
     } else {
         let mut filters = HashMap::new();
@@ -89,10 +85,8 @@ async fn zipkin_container_running(docker: &Docker) -> ContainerState {
             .await
             .unwrap();
         if !stopped_containers.is_empty() {
-            println!("Found a stopped container: {stopped_containers:?}");
             ContainerState::Stopped(stopped_containers[0].names.as_ref().unwrap()[0].clone())
         } else {
-            println!("Found no containers at all.");
             ContainerState::None
         }
     }
@@ -100,8 +94,6 @@ async fn zipkin_container_running(docker: &Docker) -> ContainerState {
 
 async fn start_container(docker: &Docker, name: &str) -> bool {
     let name = name.trim_start_matches('/');
-
-    println!("Starting the container: {name}");
 
     match docker
         .start_container(
@@ -135,8 +127,6 @@ async fn start_container(docker: &Docker, name: &str) -> bool {
             .await
             .is_err();
     }
-
-    println!("Elapsed time: {:?}", start_time.elapsed());
 
     not_elapsed
 }
@@ -179,7 +169,6 @@ async fn create_container(docker: &Docker, container: &str, image: &str) {
 async fn stop_container(docker: &Docker, name: &str) {
     let name = name.trim_start_matches('/');
 
-    println!("Stopping the container: {name}");
     let options = Some(StopContainerOptions { t: 30 });
 
     docker

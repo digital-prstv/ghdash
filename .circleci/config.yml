@@ -60,7 +60,6 @@ jobs:
       - run:
           name: Check idiomatic code use with Clippy
           command: "cargo clippy --all --tests --all-features -- -D warnings"
-      - run: cargo run -- list
       - run:
           name: Test crate with no features specified
           command: "cargo test -- --nocapture"

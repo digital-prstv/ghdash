@@ -35,49 +35,51 @@ async fn main() -> Result<(), Error> {
         confy::store(APP_NAME, config_name, cfg.clone())?;
     }
 
-    if let Some(command) = args.command {
-        match command {
-            Commands::List => {
-                let docker_connection = ghdash::connect_docker().await;
-                match docker_connection {
-                    DockerConnection::Connection(docker) => {
-                        println!("Got a connection: {:#?}", docker);
-                        let containers = docker
-                            .list_containers(Some(bollard::container::ListContainersOptions::<
-                                String,
-                            > {
-                                all: true,
-                                // filters,
-                                ..Default::default()
-                            }))
-                            .await
-                            .unwrap();
+    match args.command {
+        Some(command) => {
+            match command {
+                Commands::List => {
+                    let docker_connection = ghdash::connect_docker().await;
+                    match docker_connection {
+                        DockerConnection::Connection(docker) => {
+                            println!("Got a connection: {:#?}", docker);
+                            let containers = docker
+                                .list_containers(Some(bollard::container::ListContainersOptions::<
+                                    String,
+                                > {
+                                    all: true,
+                                    // filters,
+                                    ..Default::default()
+                                }))
+                                .await
+                                .unwrap();
 
-                        println!("List of Containers and Status");
+                            println!("List of Containers and Status");
 
-                        for container in containers {
-                            println!(
-                                "-> Name: {:?}\tStatus: {:?},\tImage: {:?}",
-                                container.names.unwrap(),
-                                container.status.unwrap(),
-                                container.image.unwrap()
-                            );
+                            for container in containers {
+                                println!(
+                                    "-> Name: {:?}\tStatus: {:?},\tImage: {:?}",
+                                    container.names.unwrap(),
+                                    container.status.unwrap(),
+                                    container.image.unwrap()
+                                );
+                            }
+                            println!();
                         }
-                        println!();
+                        DockerConnection::NoConnection => println!("No docker connection"),
                     }
-                    DockerConnection::NoConnection => println!("No docker connection"),
                 }
             }
         }
+        None => {
+            let dashboard = Dashboard::builder(cfg.user().as_str(), cfg.token().as_str())?
+                .set_repo_scope(args.repositories.unwrap_or_default())
+                .finish()
+                .await?;
+
+            print!("{dashboard}");
+        }
     }
-
-    let dashboard = Dashboard::builder(cfg.user().as_str(), cfg.token().as_str())?
-        .set_repo_scope(args.repositories.unwrap_or_default())
-        .finish()
-        .await?;
-
-    print!("{dashboard}");
-
     opentelemetry::global::shutdown_tracer_provider();
 
     Ok(())

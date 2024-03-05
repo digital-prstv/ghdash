@@ -33,7 +33,7 @@ pub struct GhDashCli {
 
 #[derive(Debug, Subcommand)]
 pub(crate) enum Commands {
-    #[command()]
+    #[command(hide = true)]
     List,
 }
 
