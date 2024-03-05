@@ -6,7 +6,7 @@
 //! it will be created in the default storage location for the OS.
 //!
 
-use clap::Parser;
+use clap::{Parser, Subcommand};
 use ghdash::RepoScope;
 
 #[derive(Parser, Debug)]
@@ -27,24 +27,14 @@ pub struct GhDashCli {
     /// scope for the repositories shown in the dashboard
     #[arg(value_enum, short, long)]
     pub(crate) repositories: Option<RepoScope>,
+    #[command(subcommand)]
+    pub(crate) command: Option<Commands>,
 }
 
-impl GhDashCli {
-    // pub fn config(&self) -> Option<String> {
-    //     self.config.clone()
-    // }
-
-    // pub fn user(&self) -> Option<String> {
-    //     self.user.clone()
-    // }
-
-    // pub fn token(&self) -> Option<String> {
-    //     self.token.clone()
-    // }
-
-    // pub fn repositories(&self) -> Option<RepoScope> {
-    //     self.repositories
-    // }
+#[derive(Debug, Subcommand)]
+pub(crate) enum Commands {
+    #[command(hide = true)]
+    List,
 }
 
 #[test]

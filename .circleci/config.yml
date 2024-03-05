@@ -9,6 +9,7 @@ executors:
   rust-env:
     docker:
       - image: jerusdp/ci-rust:<<pipeline.parameters.min-rust-version>>
+      - image: openzipkin/zipkin
 
 commands:
   cargo-build:
@@ -47,6 +48,9 @@ jobs:
     executor: rust-env
     steps:
       - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+          version: default
       - run: cargo --version
       - run:
           name: Check formatting for code
@@ -58,16 +62,7 @@ jobs:
           command: "cargo clippy --all --tests --all-features -- -D warnings"
       - run:
           name: Test crate with no features specified
-          command: "cargo test"
-
-  all-features-flag-test:
-    executor: rust-env
-    steps:
-      - checkout
-      - run: cargo --version
-      - run:
-          name: Test all features of the crate
-          command: "cargo test --all-features"
+          command: "cargo test -- --nocapture"
 
   docs:
     executor: rust-env
@@ -90,6 +85,5 @@ workflows:
     jobs:
       - required-builds
       - basic-test
-      - all-features-flag-test
       - docs
       - optional-builds

@@ -30,7 +30,11 @@
 
 mod dashboard;
 mod error;
+mod log;
 
 pub use dashboard::Dashboard;
 pub use dashboard::RepoScope;
 pub use error::Error;
+pub use log::connect_docker;
+pub use log::get_logging;
+pub use log::DockerConnection;

@@ -1,17 +1,10 @@
 mod cli;
 mod config;
 
-use crate::cli::GhDashCli;
+use crate::cli::{Commands, GhDashCli};
 use crate::config::GhConfig;
 use clap::Parser;
-use ghdash::{Dashboard, Error};
-use opentelemetry::global;
-use opentelemetry::trace::TraceError;
-use opentelemetry_sdk::runtime::Tokio;
-use opentelemetry_sdk::trace::Tracer;
-use tracing::{info, span, Level};
-use tracing_subscriber::layer::SubscriberExt;
-use tracing_subscriber::{fmt, prelude::*, EnvFilter};
+use ghdash::{get_logging, Dashboard, DockerConnection, Error};
 
 const APP_NAME: &str = clap::crate_name!();
 
@@ -19,13 +12,19 @@ const APP_NAME: &str = clap::crate_name!();
 async fn main() -> Result<(), Error> {
     let args = GhDashCli::parse();
 
-    get_logging(args.logging.log_level_filter())?;
+    get_logging(args.logging.log_level_filter()).await?;
 
     let config_name = args.config;
     let config_name = config_name.as_deref();
 
+    //1. Load the configuration file for default (known) settings
     let mut cfg: GhConfig = confy::load(APP_NAME, config_name)?;
 
+    //2. Check environment for values of user and token
+    cfg.try_env_user(APP_NAME);
+    cfg.try_env_token(APP_NAME);
+
+    //3. Check command line for values of user and token (save if found)
     if let Some(user) = args.user {
         cfg.set_user(user.as_str());
         confy::store(APP_NAME, config_name, cfg.clone())?;
@@ -36,40 +35,52 @@ async fn main() -> Result<(), Error> {
         confy::store(APP_NAME, config_name, cfg.clone())?;
     }
 
-    let dashboard = Dashboard::builder(cfg.user().as_str(), cfg.token().as_str())?
-        .set_repo_scope(args.repositories.unwrap_or_default())
-        .finish()
-        .await?;
+    match args.command {
+        Some(command) => {
+            match command {
+                Commands::List => {
+                    let docker_connection = ghdash::connect_docker().await;
+                    match docker_connection {
+                        DockerConnection::Connection(docker) => {
+                            println!("Got a connection: {:#?}", docker);
+                            let containers = docker
+                                .list_containers(Some(bollard::container::ListContainersOptions::<
+                                    String,
+                                > {
+                                    all: true,
+                                    // filters,
+                                    ..Default::default()
+                                }))
+                                .await
+                                .unwrap();
 
-    print!("{dashboard}");
+                            println!("List of Containers and Status");
 
+                            for container in containers {
+                                println!(
+                                    "-> Name: {:?}\tStatus: {:?},\tImage: {:?}",
+                                    container.names.unwrap(),
+                                    container.status.unwrap(),
+                                    container.image.unwrap()
+                                );
+                            }
+                            println!();
+                        }
+                        DockerConnection::NoConnection => println!("No docker connection"),
+                    }
+                }
+            }
+        }
+        None => {
+            let dashboard = Dashboard::builder(cfg.user().as_str(), cfg.token().as_str())?
+                .set_repo_scope(args.repositories.unwrap_or_default())
+                .finish()
+                .await?;
+
+            print!("{dashboard}");
+        }
+    }
     opentelemetry::global::shutdown_tracer_provider();
 
     Ok(())
-}
-
-fn get_logging(verbosity: log::LevelFilter) -> Result<(), Error> {
-    let tracer = init_tracer()?;
-    tracing_subscriber::registry()
-        .with(tracing_subscriber::EnvFilter::new("TRACE"))
-        .with(tracing_opentelemetry::layer().with_tracer(tracer))
-        .with(
-            fmt::Layer::default()
-                .pretty()
-                .with_filter(EnvFilter::from(format!("ghdash={verbosity}"))),
-        )
-        .try_init()?;
-
-    let span = span!(Level::INFO, "logging initiatilisation");
-    let _guard = span.enter();
-    info!("Initialised full tracing and logging to console at {verbosity}");
-    Ok(())
-}
-
-fn init_tracer() -> Result<Tracer, TraceError> {
-    global::set_text_map_propagator(opentelemetry_jaeger::Propagator::new());
-
-    opentelemetry_jaeger::new_agent_pipeline()
-        .with_service_name("ghdash")
-        .install_batch(Tokio)
 }
