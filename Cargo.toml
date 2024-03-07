@@ -1,7 +1,7 @@
 [package]
 name = "ghdash"
 authors = ["Jeremiah Russell <jrussell@jerus.ie>"]
-version = "0.1.6"
+version = "0.1.7"
 description = "Dashboard for Github account"
 edition = "2021"
 publish = false
