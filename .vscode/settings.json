@@ -9,6 +9,7 @@
         "mgmt"
     ],
     "cSpell.words": [
+        "confy",
         "dynomite",
         "fakeit",
         "ghdash",
@@ -24,6 +25,7 @@
         "mwith",
         "octorust",
         "openzipkin",
-        "rlinks"
+        "rlinks",
+        "thiserror"
     ]
 }
