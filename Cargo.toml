@@ -54,7 +54,7 @@ octorust = { git = 'https://github.com/jerusdp/octorust.git' }
 
 [dev-dependencies]
 futures-util = "0.3.30"
-reqwest = "0.12.2"
+reqwest = "0.12.4"
 trycmd = "0.15.1"
 
 [lib]
