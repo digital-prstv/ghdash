@@ -28,7 +28,7 @@ include = [
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-anyhow = "1.0.81"
+anyhow = "1.0.82"
 bollard = "0.16.1"
 clap = { version = "4.5.4", features = ["derive", "cargo"] }
 clap-verbosity-flag = "2.2.0"
@@ -54,7 +54,7 @@ octorust = { git = 'https://github.com/jerusdp/octorust.git' }
 
 [dev-dependencies]
 futures-util = "0.3.30"
-reqwest = "0.12.2"
+reqwest = "0.12.4"
 trycmd = "0.15.1"
 
 [lib]
