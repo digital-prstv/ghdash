@@ -1,8 +1,7 @@
 ```console
 $ ghdash 
-  Repository    PRs   Issues 
-═════════════════════════════
+    Repository     PRs   Issues 
+════════════════════════════════
 ...
-─────────────────────────────
 
 ```
