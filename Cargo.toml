@@ -36,11 +36,11 @@ comfy-table = "7.1.1"
 confy = "0.6.1"
 log = "0.4.21"
 octorust = "0.7.0"
-opentelemetry = "0.22.0"
-opentelemetry-zipkin = { version = "0.20.0", features = [
+opentelemetry = "0.23.0"
+opentelemetry-zipkin = { version = "0.21.0", features = [
     "reqwest-client",
 ], default-features = false }
-opentelemetry_sdk = { version = "0.22.1", features = ["tokio", "rt-tokio"] }
+opentelemetry_sdk = { version = "0.23.0", features = ["tokio", "rt-tokio"] }
 serde = { version = "1.0.200", features = ["derive"] }
 serde_derive = "1.0.200"
 thiserror = "1.0.59"
