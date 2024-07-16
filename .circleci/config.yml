@@ -1,89 +1,108 @@
 version: 2.1
 
+orbs:
+  toolkit: digital-prstv/circleci-toolkit@0.23.0
+
 parameters:
   min-rust-version:
     type: string
     default: "1.74"
+  fingerprint:
+    type: string
+    default: SHA256:OkxsH8Z6Iim6WDJBaII9eTT9aaO1f3eDc6IpsgYYPVg
+  validation-flag:
+    type: boolean
+    default: false
+    description: "If true, the validation pipeline will be executed."
+  success-flag:
+    type: boolean
+    default: false
+    description: "If true, the success pipeline will be executed."
 
 executors:
   rust-env:
     docker:
       - image: jerusdp/ci-rust:<<pipeline.parameters.min-rust-version>>
       - image: openzipkin/zipkin
+  base-env:
+    docker:
+      - image: jerusdp/ci-rust:base
 
-commands:
-  cargo-build:
-    parameters:
-      rust-version:
-        default: "stable"
-        type: string
-    steps:
-      - run:
-          name: Update Rust and check build <<parameters.rust-version>>
-          command: |
-            cargo +<<parameters.rust-version>> check --all-features
-
-jobs:
-  required-builds:
-    executor: rust-env
-    steps:
-      - checkout
-      - run: cargo --version
-      - cargo-build:
-          rust-version: "stable"
-      - cargo-build:
-          rust-version: "<<pipeline.parameters.min-rust-version>>"
-
-  optional-builds:
-    executor: rust-env
-    steps:
-      - checkout
-      - run: cargo --version
-      - cargo-build:
-          rust-version: "nightly"
-      - cargo-build:
-          rust-version: "beta"
-
-  basic-test:
-    executor: rust-env
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-          version: default
-      - run: cargo --version
-      - run:
-          name: Check formatting for code
-          command: |
-            rustfmt --version
-            cargo fmt --all -- --check
-      - run:
-          name: Check idiomatic code use with Clippy
-          command: "cargo clippy --all --tests --all-features -- -D warnings"
-      - run:
-          name: Test crate with no features specified
-          command: "cargo test -- --nocapture"
-
-  docs:
-    executor: rust-env
-    environment:
-      RUSTDOCFLAGS: --cfg docsrs -Dwarnings
-    steps:
-      - checkout
-      - run:
-          name: Test generation of all of the documentation for the crate
-          command: |
-            cargo +nightly doc --lib --no-deps --all-features --document-private-items
-
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
+  # validation:
+  #   when:
+  #     not:
+  #       equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+  #   jobs:
+  #     - required-builds
+  #     - basic-test
+  #     - docs
+  #     - optional-builds
+
+  check_last_commit:
+    when:
+      and:
+        - not:
+            equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+        - not: << pipeline.parameters.success-flag >>
+        - not: << pipeline.parameters.validation-flag >>
+
+    jobs:
+      - toolkit/choose_pipeline:
+          name: choose pipeline based on committer
+          context: bot-check
+
   validation:
     when:
-      not:
-        equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+      and:
+        - not:
+            equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+        - not: << pipeline.parameters.success-flag >>
+        - << pipeline.parameters.validation-flag >>
     jobs:
-      - required-builds
-      - basic-test
-      - docs
-      - optional-builds
+      - toolkit/required_builds:
+          min_rust_version: << pipeline.parameters.min-rust-version >>
+      - toolkit/optional_builds:
+          min_rust_version: << pipeline.parameters.min-rust-version >>
+      - toolkit/test_doc_build:
+          min_rust_version: << pipeline.parameters.min-rust-version >>
+      - toolkit/common_tests:
+          min_rust_version: << pipeline.parameters.min-rust-version >>
+      - toolkit/idiomatic_rust:
+          min_rust_version: << pipeline.parameters.min-rust-version >>
+      - toolkit/update_changelog:
+          requires:
+            - toolkit/common_tests
+            - toolkit/required_builds
+            - toolkit/test_doc_build
+            - toolkit/idiomatic_rust
+          context:
+            - release
+            - bot-check
+          ssh_fingerprint: << pipeline.parameters.fingerprint >>
+          min_rust_version: << pipeline.parameters.min-rust-version >>
+
+  on_success:
+    when:
+      and:
+        - not:
+            equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+        - << pipeline.parameters.success-flag >>
+        - not: << pipeline.parameters.validation-flag >>
+
+    jobs:
+      - toolkit/end_success
+
+  release:
+    when:
+      and:
+        - equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+        - equal: ["release check", << pipeline.schedule.name >>]
+        - not: << pipeline.parameters.success-flag >>
+        - not: << pipeline.parameters.validation-flag >>
+    jobs:
+      - toolkit/make_release:
+          context:
+            - release
+          ssh_fingerprint: << pipeline.parameters.fingerprint >>
+          min_rust_version: << pipeline.parameters.min-rust-version >>
