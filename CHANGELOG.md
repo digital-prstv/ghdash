@@ -8,6 +8,10 @@ All notable changes to this project are documented in this file.
 
 - ci-adopt toolkit and standardise changelog (pr [#95])
 
+### Security
+
+- Dependencies: update rust crate tokio to v1.38.1(pr [#99])
+
 ## [0.1.7] - 2024-03-07
 
 ### Added
@@ -213,6 +217,7 @@ All notable changes to this project are documented in this file.
 - Update tests for change in cli spec
 
 [#95]: https://github.com/jerusdp/ghdash/pull/95
+[#99]: https://github.com/jerusdp/ghdash/pull/99
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
