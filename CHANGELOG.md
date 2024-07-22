@@ -12,6 +12,7 @@ All notable changes to this project are documented in this file.
 
 - Dependencies: update rust crate tokio to v1.38.1(pr [#99])
 - Dependencies: update rust crate thiserror to v1.0.63(pr [#100])
+- Dependencies: bump openssl from 0.10.64 to 0.10.66 in the cargo group across 1 directory(pr [#101])
 
 ## [0.1.7] - 2024-03-07
 
@@ -220,6 +221,7 @@ All notable changes to this project are documented in this file.
 [#95]: https://github.com/jerusdp/ghdash/pull/95
 [#99]: https://github.com/jerusdp/ghdash/pull/99
 [#100]: https://github.com/jerusdp/ghdash/pull/100
+[#101]: https://github.com/jerusdp/ghdash/pull/101
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
