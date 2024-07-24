@@ -15,6 +15,7 @@ All notable changes to this project are documented in this file.
 - Dependencies: bump openssl from 0.10.64 to 0.10.66 in the cargo group across 1 directory(pr [#101])
 - Dependencies: update rust crate trycmd to v0.15.5(pr [#103])
 - Dependencies: update rust crate clap to v4.5.10(pr [#102])
+- Dependencies: update rust crate tokio to v1.39.1(pr [#104])
 
 ## [0.1.7] - 2024-03-07
 
@@ -226,6 +227,7 @@ All notable changes to this project are documented in this file.
 [#101]: https://github.com/jerusdp/ghdash/pull/101
 [#103]: https://github.com/jerusdp/ghdash/pull/103
 [#102]: https://github.com/jerusdp/ghdash/pull/102
+[#104]: https://github.com/jerusdp/ghdash/pull/104
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
