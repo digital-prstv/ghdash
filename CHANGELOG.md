@@ -22,6 +22,7 @@ All notable changes to this project are documented in this file.
 - Dependencies: update rust crate clap to 4.5.11(pr [#109])
 - Dependencies: update rust crate log to 0.4.22(pr [#110])
 - Dependencies: update rust crate reqwest to 0.12.5(pr [#111])
+- Dependencies: update rust crate tokio to 1.39.1(pr [#113])
 - Dependencies: update opentelemetry packages(pr [#121])
 - Dependencies: update rust crate thiserror to 1.0.63(pr [#112])
 
@@ -241,6 +242,7 @@ All notable changes to this project are documented in this file.
 [#109]: https://github.com/jerusdp/ghdash/pull/109
 [#110]: https://github.com/jerusdp/ghdash/pull/110
 [#111]: https://github.com/jerusdp/ghdash/pull/111
+[#113]: https://github.com/jerusdp/ghdash/pull/113
 [#120]: https://github.com/jerusdp/ghdash/pull/120
 [#121]: https://github.com/jerusdp/ghdash/pull/121
 [#112]: https://github.com/jerusdp/ghdash/pull/112

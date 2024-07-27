@@ -43,8 +43,8 @@ opentelemetry-zipkin = { version = "0.22.0", features = [
 opentelemetry_sdk = { version = "0.24.0", features = ["tokio", "rt-tokio"] }
 serde = { version = "1.0.200", features = ["derive"] }
 serde_derive = "1.0.200"
+tokio = { version = "1.39.1", features = ["macros", "rt-multi-thread"] }
 thiserror = "1.0.63"
-tokio = { version = "1.37.0", features = ["macros", "rt-multi-thread"] }
 tracing = "0.1.40"
 tracing-opentelemetry = "0.25.0"
 tracing-subscriber = { version = "0.3.18", features = ["std", "env-filter"] }
