@@ -36,17 +36,17 @@ comfy-table = "7.1.1"
 confy = "0.6.1"
 log = "0.4.22"
 octorust = "0.7.0"
-opentelemetry = "0.23.0"
-opentelemetry-zipkin = { version = "0.21.0", features = [
+opentelemetry = "0.24.0"
+opentelemetry-zipkin = { version = "0.22.0", features = [
     "reqwest-client",
 ], default-features = false }
-opentelemetry_sdk = { version = "0.23.0", features = ["tokio", "rt-tokio"] }
+opentelemetry_sdk = { version = "0.24.0", features = ["tokio", "rt-tokio"] }
 serde = { version = "1.0.200", features = ["derive"] }
 serde_derive = "1.0.200"
 thiserror = "1.0.59"
 tokio = { version = "1.37.0", features = ["macros", "rt-multi-thread"] }
 tracing = "0.1.40"
-tracing-opentelemetry = "0.24.0"
+tracing-opentelemetry = "0.25.0"
 tracing-subscriber = { version = "0.3.18", features = ["std", "env-filter"] }
 
 [patch.crates-io]
