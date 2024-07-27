@@ -26,6 +26,7 @@ All notable changes to this project are documented in this file.
 - Dependencies: update opentelemetry packages(pr [#121])
 - Dependencies: update rust crate thiserror to 1.0.63(pr [#112])
 - Dependencies: update rust crate trycmd to 0.15.5(pr [#114])
+- Dependencies: update rust crate trycmd to 0.15.6(pr [#123])
 
 ## [0.1.7] - 2024-03-07
 
@@ -248,6 +249,7 @@ All notable changes to this project are documented in this file.
 [#121]: https://github.com/jerusdp/ghdash/pull/121
 [#112]: https://github.com/jerusdp/ghdash/pull/112
 [#114]: https://github.com/jerusdp/ghdash/pull/114
+[#123]: https://github.com/jerusdp/ghdash/pull/123
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
