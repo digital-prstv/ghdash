@@ -23,6 +23,7 @@ All notable changes to this project are documented in this file.
 - Dependencies: update rust crate log to 0.4.22(pr [#110])
 - Dependencies: update rust crate reqwest to 0.12.5(pr [#111])
 - Dependencies: update opentelemetry packages(pr [#121])
+- Dependencies: update rust crate thiserror to 1.0.63(pr [#112])
 
 ## [0.1.7] - 2024-03-07
 
@@ -242,6 +243,7 @@ All notable changes to this project are documented in this file.
 [#111]: https://github.com/jerusdp/ghdash/pull/111
 [#120]: https://github.com/jerusdp/ghdash/pull/120
 [#121]: https://github.com/jerusdp/ghdash/pull/121
+[#112]: https://github.com/jerusdp/ghdash/pull/112
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
