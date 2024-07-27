@@ -40,6 +40,13 @@
     },
     {
       "packagePatterns": [
+        "tracing-opentelemetry",
+        "^opentelemetry[-_]?"
+      ],
+      "groupName": "opentelemetry packages"
+    },
+    {
+      "packagePatterns": [
         "^liquid[-_]?",
         "^kstring$"
       ],
@@ -55,7 +62,7 @@
     },
     {
       "matchPackagePatterns": [
-        "jerus-org/circleci-toolkit"
+        "jerusdp/circleci-toolkit"
       ],
       "enabled": false
     }

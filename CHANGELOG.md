@@ -7,6 +7,7 @@ All notable changes to this project are documented in this file.
 ### Changed
 
 - ci-adopt toolkit and standardise changelog (pr [#95])
+- chore-add opentelemetry packages group(pr [#120])
 
 ### Security
 
@@ -238,6 +239,7 @@ All notable changes to this project are documented in this file.
 [#109]: https://github.com/jerusdp/ghdash/pull/109
 [#110]: https://github.com/jerusdp/ghdash/pull/110
 [#111]: https://github.com/jerusdp/ghdash/pull/111
+[#120]: https://github.com/jerusdp/ghdash/pull/120
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
