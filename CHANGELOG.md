@@ -30,6 +30,7 @@ All notable changes to this project are documented in this file.
 - Dependencies: update serde packages to 1.0.204(pr [#115])
 - Dependencies: update rust crate opentelemetry_sdk to 0.24.1(pr [#122])
 - Dependencies: update rust crate bollard to 0.17.0(pr [#124])
+- Dependencies: update rust crate clap-verbosity-flag to 2.2.1(pr [#125])
 
 ## [0.1.7] - 2024-03-07
 
@@ -256,6 +257,7 @@ All notable changes to this project are documented in this file.
 [#115]: https://github.com/jerusdp/ghdash/pull/115
 [#122]: https://github.com/jerusdp/ghdash/pull/122
 [#124]: https://github.com/jerusdp/ghdash/pull/124
+[#125]: https://github.com/jerusdp/ghdash/pull/125
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6

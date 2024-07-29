@@ -31,7 +31,7 @@ include = [
 anyhow = "1.0.86"
 bollard = "0.17.0"
 clap = { version = "4.5.11", features = ["derive", "cargo"] }
-clap-verbosity-flag = "2.2.0"
+clap-verbosity-flag = "2.2.1"
 comfy-table = "7.1.1"
 confy = "0.6.1"
 log = "0.4.22"
