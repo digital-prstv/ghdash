@@ -3,7 +3,7 @@
 [![Crates.io][crates-badge]][crates-url]
 [![MIT licensed][mit-badge]][mit-url]
 [![Build Status][circleci-badge]][circleci-url]
-[![Rust 1.74+][version-badge]][version-url]
+[![Rust 1.75+][version-badge]][version-url]
 [![Docs][docs-badge]][docs-url]
 [![BuyMeaCoffee][bmac-badge]][bmac-url]
 [![GitHubSponsors][ghub-badge]][ghub-url]
@@ -14,7 +14,7 @@
 [mit-url]: https://github.com/jerusdp/ghdash/blob/main/LICENSE
 [circleci-badge]:https://circleci.com/gh/jerusdp/ghdash/tree/main.svg?style=svg
 [circleci-url]: https://circleci.com/gh/jerusdp/ghdash/tree/?branch=main
-[version-badge]: https://img.shields.io/badge/rust-1.74+-orange.svg
+[version-badge]: https://img.shields.io/badge/rust-1.75+-orange.svg
 [version-url]: https://www.rust-lang.org
 [docs-badge]:  https://docs.rs/ghdash/badge.svg
 [docs-url]:  https://docs.rs/ghdash
