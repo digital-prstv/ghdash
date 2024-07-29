@@ -29,6 +29,7 @@ All notable changes to this project are documented in this file.
 - Dependencies: update rust crate trycmd to 0.15.6(pr [#123])
 - Dependencies: update serde packages to 1.0.204(pr [#115])
 - Dependencies: update rust crate opentelemetry_sdk to 0.24.1(pr [#122])
+- Dependencies: update rust crate bollard to 0.17.0(pr [#124])
 
 ## [0.1.7] - 2024-03-07
 
@@ -254,6 +255,7 @@ All notable changes to this project are documented in this file.
 [#123]: https://github.com/jerusdp/ghdash/pull/123
 [#115]: https://github.com/jerusdp/ghdash/pull/115
 [#122]: https://github.com/jerusdp/ghdash/pull/122
+[#124]: https://github.com/jerusdp/ghdash/pull/124
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
