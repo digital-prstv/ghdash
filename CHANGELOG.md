@@ -4,6 +4,10 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Prepare for github app integration with second binary(pr [#127])
+
 ### Changed
 
 - ci-adopt toolkit and standardise changelog (pr [#95])
@@ -260,6 +264,7 @@ All notable changes to this project are documented in this file.
 [#124]: https://github.com/jerusdp/ghdash/pull/124
 [#125]: https://github.com/jerusdp/ghdash/pull/125
 [#126]: https://github.com/jerusdp/ghdash/pull/126
+[#127]: https://github.com/jerusdp/ghdash/pull/127
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
