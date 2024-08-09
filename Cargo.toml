@@ -58,7 +58,7 @@ reqwest = "0.12.5"
 trycmd = "0.15.6"
 
 [lib]
-name = "ghdash_lib"
+name = "ghdash"
 path = "src/lib.rs"
 
 [[bin]]

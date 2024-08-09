@@ -7,7 +7,7 @@
 //!
 
 use clap::{Parser, Subcommand};
-use ghdash_lib::RepoScope;
+use ghdash::RepoScope;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]

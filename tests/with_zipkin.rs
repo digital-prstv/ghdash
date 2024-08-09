@@ -14,7 +14,6 @@ use bollard::{
     secret::HostConfig,
     Docker,
 };
-use ghdash_lib as ghdash;
 
 const TRACER_NAME: &str = "zipkin_tester";
 const TRACER_IMAGE: &str = "openzipkin/zipkin";

@@ -4,7 +4,7 @@ mod config;
 use crate::cli::{Commands, GhDashCli};
 use crate::config::GhConfig;
 use clap::Parser;
-use ghdash_lib::{get_logging, Dashboard, DockerConnection, Error};
+use ghdash::{get_logging, Dashboard, DockerConnection, Error};
 
 const APP_NAME: &str = clap::crate_name!();
 
@@ -39,7 +39,7 @@ async fn main() -> Result<(), Error> {
         Some(command) => {
             match command {
                 Commands::List => {
-                    let docker_connection = ghdash_lib::connect_docker().await;
+                    let docker_connection = ghdash::connect_docker().await;
                     match docker_connection {
                         DockerConnection::Connection(docker) => {
                             println!("Got a connection: {:#?}", docker);
