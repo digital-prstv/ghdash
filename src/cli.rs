@@ -6,33 +6,38 @@
 //! it will be created in the default storage location for the OS.
 //!
 
+use super::RepoScope;
 use clap::{Parser, Subcommand};
-use ghdash::RepoScope;
 
+/// Command line app
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 pub struct GhDashCli {
+    /// Logging level
     #[clap(flatten)]
-    pub(crate) logging: clap_verbosity_flag::Verbosity,
+    pub logging: clap_verbosity_flag::Verbosity,
     /// Force the calculation of the version number
     /// alternate configuration file
     #[arg(short, long)]
-    pub(crate) config: Option<String>,
+    pub config: Option<String>,
     /// github user name
     #[arg(short, long)]
-    pub(crate) user: Option<String>,
+    pub user: Option<String>,
     /// github personal access token
     #[arg(short, long)]
-    pub(crate) token: Option<String>,
+    pub token: Option<String>,
     /// scope for the repositories shown in the dashboard
     #[arg(value_enum, short, long)]
-    pub(crate) repositories: Option<RepoScope>,
+    pub repositories: Option<RepoScope>,
+    /// Subcommand
     #[command(subcommand)]
-    pub(crate) command: Option<Commands>,
+    pub command: Option<Commands>,
 }
 
+/// Subcommands
 #[derive(Debug, Subcommand)]
-pub(crate) enum Commands {
+pub enum Commands {
+    /// List repositories
     #[command(hide = true)]
     List,
 }

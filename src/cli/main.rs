@@ -1,8 +1,6 @@
-mod cli;
-
-use crate::cli::{Commands, GhDashCli};
 use clap::Parser;
 use ghdash::{get_logging, Dashboard, DockerConnection, Error, GhConfig};
+use ghdash::{Commands, GhDashCli};
 
 const APP_NAME: &str = clap::crate_name!();
 
