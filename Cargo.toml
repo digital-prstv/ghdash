@@ -48,6 +48,8 @@ thiserror = "1.0.63"
 tracing = "0.1.40"
 tracing-opentelemetry = "0.25.0"
 tracing-subscriber = { version = "0.3.18", features = ["std", "env-filter"] }
+base64 = "0.22.1"
+octocrate = { version = "2.0.1", features = ["pulls", "issues", "repos", "apps"] }
 
 [patch.crates-io]
 octorust = { git = 'https://github.com/jerusdp/octorust.git' }

@@ -265,8 +265,10 @@ checksum = "a21f936df1771bf62b77f047b726c4625ff2e8aa607c01ec06e5a05bd8463401"
 dependencies = [
  "android-tzdata",
  "iana-time-zone",
+ "js-sys",
  "num-traits",
  "serde",
+ "wasm-bindgen",
  "windows-targets 0.52.6",
 ]
 
@@ -651,6 +653,7 @@ name = "ghdash"
 version = "0.1.7"
 dependencies = [
  "anyhow",
+ "base64 0.22.1",
  "bollard",
  "clap",
  "clap-verbosity-flag",
@@ -658,6 +661,7 @@ dependencies = [
  "confy",
  "futures-util",
  "log",
+ "octocrate",
  "octorust",
  "opentelemetry",
  "opentelemetry-zipkin",
@@ -1080,8 +1084,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6971da4d9c3aa03c3d8f3ff0f4155b534aad021292003895a469716b2a230378"
 dependencies = [
  "base64 0.21.7",
- "pem",
+ "pem 1.1.1",
  "ring 0.16.20",
+ "serde",
+ "serde_json",
+ "simple_asn1",
+]
+
+[[package]]
+name = "jsonwebtoken"
+version = "9.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b9ae10193d25051e74945f1ea2d0b42e03cc3b890f7e4cc5faa44997d808193f"
+dependencies = [
+ "base64 0.21.7",
+ "js-sys",
+ "pem 3.0.4",
+ "ring 0.17.8",
  "serde",
  "serde_json",
  "simple_asn1",
@@ -1269,6 +1288,47 @@ dependencies = [
 ]
 
 [[package]]
+name = "octocrate"
+version = "2.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "68b6996d4597aff355019ba743f33dada3f1d74a54f7c008df9d617dfdc64ccf"
+dependencies = [
+ "chrono",
+ "octocrate-core",
+ "octocrate-types",
+ "serde",
+ "serde_json",
+ "typed-builder",
+]
+
+[[package]]
+name = "octocrate-core"
+version = "0.1.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b53fff2bc57b59786a6c8307422e5dbce2e9c6df0b82676a65eab4f9193aebc8"
+dependencies = [
+ "chrono",
+ "jsonwebtoken 9.3.0",
+ "octocrate-types",
+ "reqwest 0.12.5",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
+name = "octocrate-types"
+version = "2.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7fad2fd851d7504794b4ef9782b00cd34bbbc409d2ab3695a4e993223fa3d8ea"
+dependencies = [
+ "chrono",
+ "serde",
+ "serde_json",
+ "typed-builder",
+]
+
+[[package]]
 name = "octorust"
 version = "0.7.1"
 source = "git+https://github.com/jerusdp/octorust.git#78b4b5d81f401688d635ff62e7aa13be6f1e2843"
@@ -1278,11 +1338,11 @@ dependencies = [
  "bytes",
  "chrono",
  "http 0.2.12",
- "jsonwebtoken",
+ "jsonwebtoken 8.3.0",
  "log",
  "mime",
  "parse_link_header",
- "pem",
+ "pem 1.1.1",
  "percent-encoding",
  "reqwest 0.11.27",
  "reqwest-conditional-middleware",
@@ -1513,6 +1573,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a8835c273a76a90455d7344889b0964598e3316e2a79ede8e36f16bdcf2228b8"
 dependencies = [
  "base64 0.13.1",
+]
+
+[[package]]
+name = "pem"
+version = "3.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8e459365e590736a54c3fa561947c84837534b8e9af6fc5bf781307e82658fae"
+dependencies = [
+ "base64 0.22.1",
+ "serde",
 ]
 
 [[package]]
