@@ -7,6 +7,7 @@ All notable changes to this project are documented in this file.
 ### Added
 
 - Prepare for github app integration with second binary(pr [#127])
+- add GitHub API integration with octocrate(pr [#128])
 
 ### Changed
 
@@ -265,6 +266,7 @@ All notable changes to this project are documented in this file.
 [#125]: https://github.com/jerusdp/ghdash/pull/125
 [#126]: https://github.com/jerusdp/ghdash/pull/126
 [#127]: https://github.com/jerusdp/ghdash/pull/127
+[#128]: https://github.com/jerusdp/ghdash/pull/128
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
