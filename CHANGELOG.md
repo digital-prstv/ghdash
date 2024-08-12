@@ -15,6 +15,7 @@ All notable changes to this project are documented in this file.
 - chore-add opentelemetry packages group(pr [#120])
 - ci-upgrade jerusdp/circleci-toolkit orb version from 0.24.1 to 1.0.0(pr [#129])
 - refactor-move config from bin to library so that it can be shared with other bins(pr [#130])
+- refactor-move cli to library so that it can be shared with other bins(pr [#131])
 
 ### Security
 
@@ -271,6 +272,7 @@ All notable changes to this project are documented in this file.
 [#128]: https://github.com/jerusdp/ghdash/pull/128
 [#129]: https://github.com/jerusdp/ghdash/pull/129
 [#130]: https://github.com/jerusdp/ghdash/pull/130
+[#131]: https://github.com/jerusdp/ghdash/pull/131
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
