@@ -17,6 +17,7 @@ All notable changes to this project are documented in this file.
 - refactor-move config from bin to library so that it can be shared with other bins(pr [#130])
 - refactor-move cli to library so that it can be shared with other bins(pr [#131])
 - refactor-rename GhDashCli struct to Cli(pr [#132])
+- refactor-rename builder to new and finish to generate in Dashboard struct(pr [#133])
 
 ### Security
 
@@ -275,6 +276,7 @@ All notable changes to this project are documented in this file.
 [#130]: https://github.com/jerusdp/ghdash/pull/130
 [#131]: https://github.com/jerusdp/ghdash/pull/131
 [#132]: https://github.com/jerusdp/ghdash/pull/132
+[#133]: https://github.com/jerusdp/ghdash/pull/133
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
