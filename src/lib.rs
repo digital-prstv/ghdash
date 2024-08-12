@@ -34,8 +34,8 @@ mod dashboard;
 mod error;
 mod log;
 
+pub use cli::Cli;
 pub use cli::Commands;
-pub use cli::GhDashCli;
 pub use config::GhConfig;
 pub use dashboard::Dashboard;
 pub use dashboard::RepoScope;

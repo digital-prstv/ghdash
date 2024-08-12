@@ -12,7 +12,7 @@ use clap::{Parser, Subcommand};
 /// Command line app
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
-pub struct GhDashCli {
+pub struct Cli {
     /// Logging level
     #[clap(flatten)]
     pub logging: clap_verbosity_flag::Verbosity,
@@ -45,5 +45,5 @@ pub enum Commands {
 #[test]
 fn verify_cli() {
     use clap::CommandFactory;
-    GhDashCli::command().debug_assert()
+    Cli::command().debug_assert()
 }

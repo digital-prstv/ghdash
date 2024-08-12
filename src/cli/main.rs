@@ -1,12 +1,12 @@
 use clap::Parser;
 use ghdash::{get_logging, Dashboard, DockerConnection, Error, GhConfig};
-use ghdash::{Commands, GhDashCli};
+use ghdash::{Cli, Commands};
 
 const APP_NAME: &str = clap::crate_name!();
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    let args = GhDashCli::parse();
+    let args = Cli::parse();
 
     get_logging(args.logging.log_level_filter()).await?;
 
