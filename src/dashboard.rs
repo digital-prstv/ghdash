@@ -36,34 +36,21 @@ struct RepoResult {
     name: String,
     count_res: Result<(usize, usize), Error>,
 }
-
-/// Source of authentication
-#[derive(Debug, Clone)]
-pub enum AuthSource {
-    /// Personal Access Token
-    Pat,
-}
-
 /// Struct Representing a Dashboard and key data required to create the dashboard
 ///
-#[derive(Debug, Clone)]
 pub struct Dashboard {
+    api: GitHubAPI,
     user: String,
-    token: String,
-    auth_source: AuthSource,
     repositories: Vec<Repo>,
     repo_scope: RepoScope,
     archived: bool,
 }
 
 impl Dashboard {
-    /// Create a dashboard by setting the user and token strings to access Github
-    ///
-    /// Without a user and token to get data from Github the dashboard is meaningless
-    /// therefore a new struct without this data is not meaningful
+    /// Create an GitHub API client to make a dashboard using a  personal accesses token
     ///
     #[instrument(skip(token))]
-    pub fn new(user: &str, token: &str, auth_source: AuthSource) -> Result<Self, Error> {
+    pub fn new_with_personal_access_token(user: &str, token: &str) -> Result<Self, Error> {
         if user.is_empty() {
             return Err(Error::MustHaveUser);
         }
@@ -72,12 +59,17 @@ impl Dashboard {
             return Err(Error::MustHaveToken);
         }
 
-        info!("Starting to build the dashboard.");
+        let token = PersonalAccessToken::new(token);
+
+        let config = APIConfig::with_token(token).shared();
+
+        let api = GitHubAPI::new(&config);
+
+        info!("Ready to build a dashboard.");
 
         Ok(Dashboard {
+            api,
             user: user.to_string(),
-            token: token.to_string(),
-            auth_source,
             repositories: Vec::new(),
             repo_scope: RepoScope::default(),
             archived: false,
@@ -96,19 +88,12 @@ impl Dashboard {
     /// Gather the data for the report from Github
     ///
     #[instrument(name = "Extract_dashboard_data", skip(self), fields(self.user = %self.user, self.repo_scope = ?self.repo_scope))]
-    pub async fn generate(&mut self) -> Result<Self, Error> {
+    pub async fn generate(&mut self) -> Result<&Self, Error> {
         info!("Finishing the dashboard configuration build.");
 
-        let token = match self.auth_source {
-            AuthSource::Pat => PersonalAccessToken::new(self.token.clone()),
-        };
-
-        let config = APIConfig::with_token(token).shared();
-
-        let api = GitHubAPI::new(&config);
-
         info!("Access secured to github repositories and pull requests.\nGetting the base list of repositories.");
-        let mut repos_list = api
+        let mut repos_list = self
+            .api
             .repos
             .list_for_authenticated_user()
             .send()
@@ -170,7 +155,7 @@ impl Dashboard {
         for repo in repos_list {
             let t_user = self.user.clone();
             let t_repo = repo.name.clone();
-            let t_issues = api.issues.list_for_repo(t_user, t_repo).send().await;
+            let t_issues = self.api.issues.list_for_repo(t_user, t_repo).send().await;
             let t_repo = repo.name.clone();
             info!("Counting issue requests for {:?}", &repo.name);
             let res: JoinHandle<RepoResult> = tokio::spawn(async move {
@@ -208,7 +193,7 @@ impl Dashboard {
         }
         self.repositories = repositories;
 
-        Ok(self.to_owned())
+        Ok(self)
     }
 }
 
