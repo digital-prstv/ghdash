@@ -20,6 +20,7 @@ All notable changes to this project are documented in this file.
 - refactor-rename GhDashCli struct to Cli(pr [#132])
 - refactor-rename builder to new and finish to generate in Dashboard struct(pr [#133])
 - refactor-replace octorust library with octocrate for GitHub API calls(pr [#134])
+- refactor-remove AuthSource enum and refactor Dashboard struct with pat new(pr [#137])
 
 ### Fixed
 
@@ -286,6 +287,7 @@ All notable changes to this project are documented in this file.
 [#134]: https://github.com/jerusdp/ghdash/pull/134
 [#135]: https://github.com/jerusdp/ghdash/pull/135
 [#136]: https://github.com/jerusdp/ghdash/pull/136
+[#137]: https://github.com/jerusdp/ghdash/pull/137
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
