@@ -50,6 +50,7 @@ All notable changes to this project are documented in this file.
 - Dependencies: update rust crate bollard to 0.17.0(pr [#124])
 - Dependencies: update rust crate clap-verbosity-flag to 2.2.1(pr [#125])
 - Dependencies: update rust crate tokio to 1.39.2(pr [#126])
+- Dependencies: update serde packages to 1.0.207(pr [#140])
 
 ## [0.1.7] - 2024-03-07
 
@@ -290,6 +291,7 @@ All notable changes to this project are documented in this file.
 [#136]: https://github.com/jerusdp/ghdash/pull/136
 [#137]: https://github.com/jerusdp/ghdash/pull/137
 [#138]: https://github.com/jerusdp/ghdash/pull/138
+[#140]: https://github.com/jerusdp/ghdash/pull/140
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
