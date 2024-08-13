@@ -20,6 +20,10 @@ All notable changes to this project are documented in this file.
 - refactor-rename builder to new and finish to generate in Dashboard struct(pr [#133])
 - refactor-replace octorust library with octocrate for GitHub API calls(pr [#134])
 
+### Fixed
+
+- remove redundant octorust dependency(pr [#135])
+
 ### Security
 
 - Dependencies: update rust crate tokio to v1.38.1(pr [#99])
@@ -279,6 +283,7 @@ All notable changes to this project are documented in this file.
 [#132]: https://github.com/jerusdp/ghdash/pull/132
 [#133]: https://github.com/jerusdp/ghdash/pull/133
 [#134]: https://github.com/jerusdp/ghdash/pull/134
+[#135]: https://github.com/jerusdp/ghdash/pull/135
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
