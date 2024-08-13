@@ -51,6 +51,7 @@ All notable changes to this project are documented in this file.
 - Dependencies: update rust crate clap-verbosity-flag to 2.2.1(pr [#125])
 - Dependencies: update rust crate tokio to 1.39.2(pr [#126])
 - Dependencies: update serde packages to 1.0.207(pr [#140])
+- Dependencies: update rust crate clap to 4.5.15(pr [#139])
 
 ## [0.1.7] - 2024-03-07
 
@@ -292,6 +293,7 @@ All notable changes to this project are documented in this file.
 [#137]: https://github.com/jerusdp/ghdash/pull/137
 [#138]: https://github.com/jerusdp/ghdash/pull/138
 [#140]: https://github.com/jerusdp/ghdash/pull/140
+[#139]: https://github.com/jerusdp/ghdash/pull/139
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/0.1.5...0.1.6
