@@ -29,6 +29,9 @@ pub enum Error {
     /// Error passed from octorust
     #[error("0:?")]
     OctorustClientSetup(#[from] octorust::ClientError),
+    /// Error passed from octocrate
+    #[error("0:?")]
+    OctocrateError(#[from] octocrate::Error),
     /// Http Error Code
     #[error("0:?")]
     HttpErrorCode(u16),

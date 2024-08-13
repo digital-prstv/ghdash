@@ -2,18 +2,12 @@
 //!
 
 use std::fmt::{self};
-use std::sync::Arc;
 
 use crate::error::Error;
 use clap::ValueEnum;
 use comfy_table::presets::NOTHING;
 use comfy_table::{Attribute, Cell, CellAlignment, Color, Table, TableComponent};
-use octorust::issues::Issues;
-use octorust::types::{
-    IssuesListSort, IssuesListState, Order, ReposListOrgSort, ReposListType, Repository,
-};
-use octorust::Response;
-use octorust::{auth::Credentials, Client};
+use octocrate::{APIConfig, GitHubAPI, Issue, PersonalAccessToken, Repository};
 use tokio::task::JoinHandle;
 use tracing::{debug, info, instrument, warn};
 
@@ -93,35 +87,42 @@ impl Dashboard {
     #[instrument(name = "Extract_dashboard_data", skip(self), fields(self.user = %self.user, self.repo_scope = ?self.repo_scope))]
     pub async fn generate(&mut self) -> Result<Self, Error> {
         info!("Finishing the dashboard configuration build.");
-        let list_type = match self.repo_scope {
-            RepoScope::Authored => ReposListType::Public,
-            RepoScope::Forked => ReposListType::Public,
-            RepoScope::Private => ReposListType::Private,
-            RepoScope::Public => ReposListType::Public,
-        };
 
-        let github = Client::new(
-            String::from(&self.user),
-            Credentials::Token(String::from(&self.token)),
-        )?;
+        let token = PersonalAccessToken::new(self.token.clone());
 
-        let repos = github.repos();
-        let issues = Arc::new(github.issues());
+        let config = APIConfig::with_token(token).shared();
+
+        let api = GitHubAPI::new(&config);
 
         info!("Access secured to github repositories and pull requests.\nGetting the base list of repositories.");
-        let repos_list = repos
-            .list_all_for_authenticated_user(
-                None,
-                "",
-                Some(list_type),
-                ReposListOrgSort::FullName,
-                Order::Asc,
-                None,
-                None,
-            )
-            .await?;
+        let mut repos_list = api
+            .repos
+            .list_for_authenticated_user()
+            .send()
+            .await
+            .unwrap();
 
-        let mut repos_list = extract_list_from_response(repos_list)?;
+        // let github = Client::new(
+        //     String::from(&self.user),
+        //     Credentials::Token(String::from(&self.token)),
+        // )?;
+
+        // let repos = github.repos();
+        // let issues = Arc::new(github.issues());
+
+        // let repos_list = repos
+        //     .list_all_for_authenticated_user(
+        //         None,
+        //         "",
+        //         Some(list_type),
+        //         ReposListOrgSort::FullName,
+        //         Order::Asc,
+        //         None,
+        //         None,
+        //     )
+        //     .await?;
+
+        // let mut repos_list = extract_list_from_response(repos_list)?;
 
         info!("Remove un-owned repositories.");
         repos_list.retain(|repo| owned_by(repo, &self.user));
@@ -154,13 +155,13 @@ impl Dashboard {
         info!("Building list of repositories ({:#?}).", &repositories);
 
         for repo in repos_list {
-            let t_issues = issues.clone();
-            let t_repo = repo.name.clone();
             let t_user = self.user.clone();
-
+            let t_repo = repo.name.clone();
+            let t_issues = api.issues.list_for_repo(t_user, t_repo).send().await;
+            let t_repo = repo.name.clone();
             info!("Counting issue requests for {:?}", &repo.name);
             let res: JoinHandle<RepoResult> = tokio::spawn(async move {
-                let count_res = count_issues(&t_issues, t_user.as_ref(), t_repo.as_ref()).await;
+                let count_res = count_issues(t_issues).await;
                 RepoResult {
                     name: t_repo,
                     count_res,
@@ -255,54 +256,31 @@ impl fmt::Display for Dashboard {
 
 #[instrument(skip(repo) fields(repo.name))]
 fn owned_by(repo: &Repository, user: &str) -> bool {
-    if let Some(owner) = repo.owner.clone() {
-        debug!(
-            "checking {} owned by {} for user {}",
-            &repo.name, &owner.login, &user
-        );
-        owner.login == user
-    } else {
-        false
-    }
+    let owner = repo.owner.clone();
+    debug!(
+        "checking {} owned by {} for user {}",
+        &repo.name, &owner.login, &user
+    );
+
+    owner.login == user
 }
 
 #[instrument(skip(issues))]
 async fn count_issues(
-    issues: &Arc<Issues>,
-    user: &str,
-    repo: &str,
+    issues: Result<Vec<Issue>, octocrate::Error>,
 ) -> Result<(usize, usize), Error> {
-    let all_issues = issues
-        .list_all_for_repo(
-            user,
-            repo,
-            "",
-            IssuesListState::Open,
-            "",
-            "",
-            "",
-            "",
-            IssuesListSort::Created,
-            Order::Asc,
-            None,
-        )
-        .await;
+    debug!("Success of request for all issues: {:?}", &issues.is_ok());
 
-    debug!(
-        "Success of request for all issues: {:?}",
-        &all_issues.is_ok()
-    );
-
-    match all_issues {
+    match issues {
         Ok(issues_list) => {
             let mut pr_count = 0;
             let mut issue_count = 0;
 
-            if !issues_list.status.is_success() {
-                return Err(Error::HttpErrorCode(issues_list.status.as_u16()));
-            }
+            // if !issues_list.status.is_success() {
+            //     return Err(Error::HttpErrorCode(issues_list.status.as_u16()));
+            // }
 
-            let issues_list = extract_list_from_response(issues_list)?;
+            // let issues_list = extract_list_from_response(issues_list)?;
 
             for issue in issues_list {
                 match issue.pull_request {
@@ -320,12 +298,4 @@ async fn count_issues(
             Err(e.into())
         }
     }
-}
-
-fn extract_list_from_response<T>(list: Response<T>) -> Result<T, Error> {
-    if !list.status.is_success() {
-        return Err(Error::HttpErrorCode(list.status.as_u16()));
-    }
-
-    Ok(list.body)
 }
