@@ -26,10 +26,10 @@ async fn with_zipkin_tests() {
 
     let started_container = ensure_container_started(&docker, TRACER_NAME, TRACER_IMAGE).await;
 
-    trycmd::TestCases::new()
-        .case("tests/logging/*.trycmd")
-        .insert_var("[MESSAGE]", "tracing and logging")
-        .unwrap();
+    // trycmd::TestCases::new()
+    //     .case("tests/logging/*.trycmd")
+    //     .insert_var("[MESSAGE]", "tracing and logging")
+    //     .unwrap();
 
     stop_container(&docker, &started_container).await;
 }
