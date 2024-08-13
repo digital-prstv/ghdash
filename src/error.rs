@@ -26,9 +26,6 @@ pub enum Error {
     /// Error passed up from tracing_subscriber try inita
     #[error("0:?")]
     TracingSubscriberTryInit(#[from] tracing_subscriber::util::TryInitError),
-    /// Error passed from octorust
-    #[error("0:?")]
-    OctorustClientSetup(#[from] octorust::ClientError),
     /// Error passed from octocrate
     #[error("0:?")]
     OctocrateError(#[from] octocrate::Error),
