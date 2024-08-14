@@ -100,8 +100,7 @@ impl Dashboard {
 
         let api = GitHubAPI::new(&config);
 
-        println!("user: {user:?}");
-        // Get the installation for a repoistory.
+        // Get the installation for a user/org.
         let installation = api.apps.get_user_installation(user).send().await.unwrap();
 
         // Get the Installation Acccess Token for this Installation
@@ -146,33 +145,10 @@ impl Dashboard {
         let mut repos_list = self
             .api
             .repos
-            // .list_for_authenticated_user()
             .list_for_user(&self.user)
             .send()
             .await
             .unwrap();
-
-        // let github = Client::new(
-        //     String::from(&self.user),
-        //     Credentials::Token(String::from(&self.token)),
-        // )?;
-
-        // let repos = github.repos();
-        // let issues = Arc::new(github.issues());
-
-        // let repos_list = repos
-        //     .list_all_for_authenticated_user(
-        //         None,
-        //         "",
-        //         Some(list_type),
-        //         ReposListOrgSort::FullName,
-        //         Order::Asc,
-        //         None,
-        //         None,
-        //     )
-        //     .await?;
-
-        // let mut repos_list = extract_list_from_response(repos_list)?;
 
         info!("Remove un-owned repositories.");
         repos_list.retain(|repo| repo.owner.login == self.user);
