@@ -70,8 +70,11 @@ workflows:
           context:
             - release
             - bot-check
+            - pcu-app
           ssh_fingerprint: << pipeline.parameters.fingerprint >>
           min_rust_version: << pipeline.parameters.min-rust-version >>
+          install_from_github: true
+          pcu_verbosity: "-vvv"
 
   on_success:
     when:
@@ -96,5 +99,8 @@ workflows:
           context:
             - release
             - bot-check
+            - pcu-app
           ssh_fingerprint: << pipeline.parameters.fingerprint >>
           min_rust_version: << pipeline.parameters.min-rust-version >>
+          install_from_github: true
+          pcu_verbosity: "-vvvv"
