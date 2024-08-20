@@ -27,6 +27,7 @@ All notable changes to this project are documented in this file.
 - ci-add pcu-app context and install_from_github, pcu_verbosity parameters to workflows(pr [#143])
 - ci-add publish parameter with false value(pr [#144])
 - ci-update jerusdp/circleci-toolkit orb version from 1.0.0 to 1.1.0(pr [#145])
+- ci-upgrade jerusdp/circleci-toolkit from 1.1.0 to 1.2.0(pr [#146])
 
 ### Fixed
 
@@ -304,6 +305,7 @@ All notable changes to this project are documented in this file.
 [#143]: https://github.com/jerusdp/ghdash/pull/143
 [#144]: https://github.com/jerusdp/ghdash/pull/144
 [#145]: https://github.com/jerusdp/ghdash/pull/145
+[#146]: https://github.com/jerusdp/ghdash/pull/146
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
