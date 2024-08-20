@@ -26,6 +26,7 @@ All notable changes to this project are documented in this file.
 - ci-add bot-check context to make_release workflow(pr [#142])
 - ci-add pcu-app context and install_from_github, pcu_verbosity parameters to workflows(pr [#143])
 - ci-add publish parameter with false value(pr [#144])
+- ci-update jerusdp/circleci-toolkit orb version from 1.0.0 to 1.1.0(pr [#145])
 
 ### Fixed
 
@@ -302,6 +303,7 @@ All notable changes to this project are documented in this file.
 [#142]: https://github.com/jerusdp/ghdash/pull/142
 [#143]: https://github.com/jerusdp/ghdash/pull/143
 [#144]: https://github.com/jerusdp/ghdash/pull/144
+[#145]: https://github.com/jerusdp/ghdash/pull/145
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
