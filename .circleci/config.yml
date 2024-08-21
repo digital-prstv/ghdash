@@ -17,7 +17,7 @@ parameters:
     description: "If true, the success pipeline will be executed."
 
 orbs:
-  toolkit: jerusdp/circleci-toolkit@1.3.0
+  toolkit: jerusdp/circleci-toolkit@1.4.0
 
 executors:
   rust-env:
@@ -105,3 +105,4 @@ workflows:
           pcu_verbosity: "-vvvv"
           pcu_push: true
           update_pcu: true
+          pcu_semver: true
