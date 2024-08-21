@@ -17,7 +17,7 @@ parameters:
     description: "If true, the success pipeline will be executed."
 
 orbs:
-  toolkit: jerusdp/circleci-toolkit@1.2.1
+  toolkit: jerusdp/circleci-toolkit@1.2.2
 
 executors:
   rust-env:
@@ -105,4 +105,4 @@ workflows:
           pcu_verbosity: "-vvvv"
           pcu_push: true
           update_pcu: true
-          pcu_commit_message: "Release $SEMVER}"
+          pcu_commit_message: "Release v${SEMVER}"
