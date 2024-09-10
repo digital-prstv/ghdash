@@ -44,6 +44,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate tokio to 1.40.0(pr [#156])
 - deps: update opentelemetry packages to 0.25.0(pr [#157])
 - deps: update rust crate anyhow to 1.0.87(pr [#158])
+- deps: update rust crate bollard to 0.17.1(pr [#159])
 
 ### Security
 
@@ -330,6 +331,7 @@ All notable changes to this project are documented in this file.
 [#156]: https://github.com/jerusdp/ghdash/pull/156
 [#157]: https://github.com/jerusdp/ghdash/pull/157
 [#158]: https://github.com/jerusdp/ghdash/pull/158
+[#159]: https://github.com/jerusdp/ghdash/pull/159
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
