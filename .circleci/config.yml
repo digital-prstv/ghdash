@@ -55,6 +55,10 @@ workflows:
           filters:
             branches:
               only: main
+          context:
+            - release
+            - bot-check
+            - pcu-app
       - toolkit/required_builds:
           min_rust_version: << pipeline.parameters.min-rust-version >>
       - toolkit/optional_builds:
