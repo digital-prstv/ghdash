@@ -35,14 +35,14 @@ clap-verbosity-flag = "2.2.1"
 comfy-table = "7.1.1"
 confy = "0.6.1"
 log = "0.4.22"
-opentelemetry = "0.25.0"
-opentelemetry-zipkin = { version = "0.25.0", features = [
+opentelemetry = "0.24.0"
+opentelemetry-zipkin = { version = "0.22.0", features = [
     "reqwest-client",
 ], default-features = false }
-opentelemetry_sdk = { version = "0.25.0", features = ["tokio", "rt-tokio"] }
+opentelemetry_sdk = { version = "0.24.1", features = ["tokio", "rt-tokio"] }
 serde = { version = "1.0.207", features = ["derive"] }
 serde_derive = "1.0.207"
-tokio = { version = "1.38.1", features = ["macros", "rt-multi-thread"] }
+tokio = { version = "1.40.0", features = ["macros", "rt-multi-thread"] }
 thiserror = "1.0.63"
 tracing = "0.1.40"
 tracing-opentelemetry = "0.25.0"
