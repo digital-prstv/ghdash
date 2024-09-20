@@ -51,6 +51,7 @@ All notable changes to this project are documented in this file.
 - deps: update serde packages to 1.0.210(pr [#163])
 - deps: update rust crate anyhow to 1.0.88(pr [#165])
 - deps: update rust crate anyhow to 1.0.89(pr [#166])
+- deps: update rust crate clap to 4.5.18(pr [#167])
 
 ### Security
 
@@ -344,6 +345,7 @@ All notable changes to this project are documented in this file.
 [#163]: https://github.com/jerusdp/ghdash/pull/163
 [#165]: https://github.com/jerusdp/ghdash/pull/165
 [#166]: https://github.com/jerusdp/ghdash/pull/166
+[#167]: https://github.com/jerusdp/ghdash/pull/167
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
