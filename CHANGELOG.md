@@ -52,6 +52,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate anyhow to 1.0.88(pr [#165])
 - deps: update rust crate anyhow to 1.0.89(pr [#166])
 - deps: update rust crate clap to 4.5.18(pr [#167])
+- deps: update rust crate thiserror to 1.0.64(pr [#168])
 
 ### Security
 
@@ -346,6 +347,7 @@ All notable changes to this project are documented in this file.
 [#165]: https://github.com/jerusdp/ghdash/pull/165
 [#166]: https://github.com/jerusdp/ghdash/pull/166
 [#167]: https://github.com/jerusdp/ghdash/pull/167
+[#168]: https://github.com/jerusdp/ghdash/pull/168
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
