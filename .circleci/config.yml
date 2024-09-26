@@ -50,7 +50,6 @@ workflows:
         - << pipeline.parameters.validation-flag >>
     jobs:
       - toolkit/label:
-          ssh_fingerprint: << pipeline.parameters.fingerprint >>
           min_rust_version: << pipeline.parameters.min-rust-version >>
           filters:
             branches:
@@ -69,7 +68,8 @@ workflows:
           min_rust_version: << pipeline.parameters.min-rust-version >>
       - toolkit/idiomatic_rust:
           min_rust_version: << pipeline.parameters.min-rust-version >>
-      - toolkit/security
+      - toolkit/security:
+          sonarcloud: false
       - toolkit/update_changelog:
           requires:
             - toolkit/common_tests
