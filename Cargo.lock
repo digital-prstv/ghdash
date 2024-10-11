@@ -1215,9 +1215,9 @@ dependencies = [
 
 [[package]]
 name = "opentelemetry"
-version = "0.24.0"
+version = "0.26.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4c365a63eec4f55b7efeceb724f1336f26a9cf3427b70e59e2cd2a5b947fba96"
+checksum = "570074cc999d1a58184080966e5bd3bf3a9a4af650c3b05047c2621e7405cd17"
 dependencies = [
  "futures-core",
  "futures-sink",
@@ -1229,9 +1229,9 @@ dependencies = [
 
 [[package]]
 name = "opentelemetry-http"
-version = "0.13.0"
+version = "0.26.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ad31e9de44ee3538fb9d64fe3376c1362f406162434609e79aea2a41a0af78ab"
+checksum = "6351496aeaa49d7c267fb480678d85d1cd30c5edb20b497c48c56f62a8c14b99"
 dependencies = [
  "async-trait",
  "bytes",
@@ -1242,15 +1242,15 @@ dependencies = [
 
 [[package]]
 name = "opentelemetry-semantic-conventions"
-version = "0.16.0"
+version = "0.26.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1cefe0543875379e47eb5f1e68ff83f45cc41366a92dfd0d073d513bf68e9a05"
+checksum = "db945c1eaea8ac6a9677185357480d215bb6999faa9f691d0c4d4d641eab7a09"
 
 [[package]]
 name = "opentelemetry-zipkin"
-version = "0.22.0"
+version = "0.26.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e68336254a44c5c20574989699582175910b933be85a593a13031ee58811d93d"
+checksum = "dd5f25a628014191d3e98bb4794e37771b580e9c3de341cf1c813019aa721278"
 dependencies = [
  "async-trait",
  "futures-core",
@@ -1269,9 +1269,9 @@ dependencies = [
 
 [[package]]
 name = "opentelemetry_sdk"
-version = "0.24.1"
+version = "0.26.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "692eac490ec80f24a17828d49b40b60f5aeaccdfe6a503f939713afd22bc28df"
+checksum = "d2c627d9f4c9cdc1f21a29ee4bfbd6028fcb8bcf2a857b43f3abdf72c9c862f3"
 dependencies = [
  "async-trait",
  "futures-channel",
@@ -2184,9 +2184,9 @@ dependencies = [
 
 [[package]]
 name = "tracing-opentelemetry"
-version = "0.25.0"
+version = "0.27.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a9784ed4da7d921bc8df6963f8c80a0e4ce34ba6ba76668acadd3edbd985ff3b"
+checksum = "dc58af5d3f6c5811462cabb3289aec0093f7338e367e5a33d28c0433b3c7360b"
 dependencies = [
  "js-sys",
  "once_cell",
