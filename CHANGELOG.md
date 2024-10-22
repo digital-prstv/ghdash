@@ -60,6 +60,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate clap to 4.5.20(pr [#174])
 - deps: update opentelemetry packages(pr [#175])
 - deps: update rust crate anyhow to 1.0.90(pr [#176])
+- deps: update serde packages to 1.0.211(pr [#177])
 
 ### Security
 
@@ -362,6 +363,7 @@ All notable changes to this project are documented in this file.
 [#174]: https://github.com/jerusdp/ghdash/pull/174
 [#175]: https://github.com/jerusdp/ghdash/pull/175
 [#176]: https://github.com/jerusdp/ghdash/pull/176
+[#177]: https://github.com/jerusdp/ghdash/pull/177
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
