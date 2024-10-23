@@ -40,8 +40,8 @@ opentelemetry-zipkin = { version = "0.26.0", features = [
     "reqwest-client",
 ], default-features = false }
 opentelemetry_sdk = { version = "0.26.0", features = ["tokio", "rt-tokio"] }
-serde = { version = "1.0.211", features = ["derive"] }
-serde_derive = "1.0.211"
+serde = { version = "1.0.213", features = ["derive"] }
+serde_derive = "1.0.213"
 tokio = { version = "1.41.0", features = ["macros", "rt-multi-thread"] }
 thiserror = "1.0.64"
 tracing = "0.1.40"
