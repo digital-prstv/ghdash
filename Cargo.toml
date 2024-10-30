@@ -57,7 +57,7 @@ octocrate = { version = "2.0.1", features = [
 [dev-dependencies]
 futures-util = "0.3.30"
 reqwest = "0.12.9"
-trycmd = "0.15.7"
+trycmd = "0.15.8"
 
 [lib]
 name = "ghdash"
