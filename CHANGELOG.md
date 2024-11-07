@@ -73,6 +73,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate thiserror to 1.0.67(pr [#187])
 - deps: update rust crate thiserror to 1.0.68(pr [#188])
 - deps: update rust crate anyhow to 1.0.93(pr [#189])
+- deps: update rust crate tokio to 1.41.1(pr [#191])
 
 ### Security
 
@@ -388,6 +389,7 @@ All notable changes to this project are documented in this file.
 [#187]: https://github.com/jerusdp/ghdash/pull/187
 [#188]: https://github.com/jerusdp/ghdash/pull/188
 [#189]: https://github.com/jerusdp/ghdash/pull/189
+[#191]: https://github.com/jerusdp/ghdash/pull/191
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
