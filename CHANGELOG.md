@@ -38,6 +38,7 @@ All notable changes to this project are documented in this file.
 - chore-remove unnecessary comments and assign @jerusdp as default code owner(pr [#154])
 - ci-update circleci-toolkit version from 1.4.1 to 1.4.2(pr [#155])
 - chore-update CircleCI toolkit version and enable renovate for toolkit(pr [#169])
+- Renovate-on-fridays-only(pr [#197])
 
 ### Fixed
 
@@ -400,6 +401,7 @@ All notable changes to this project are documented in this file.
 [#193]: https://github.com/jerusdp/ghdash/pull/193
 [#194]: https://github.com/jerusdp/ghdash/pull/194
 [#195]: https://github.com/jerusdp/ghdash/pull/195
+[#197]: https://github.com/jerusdp/ghdash/pull/197
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
