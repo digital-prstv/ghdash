@@ -83,6 +83,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate clap to 4.5.21(pr [#198])
 - deps: update rust crate comfy-table to 7.1.3(pr [#199])
 - deps: update opentelemetry packages(pr [#200])
+- deps: update rust crate bollard to 0.18.0(pr [#201])
 
 ### Security
 
@@ -408,6 +409,7 @@ All notable changes to this project are documented in this file.
 [#198]: https://github.com/jerusdp/ghdash/pull/198
 [#199]: https://github.com/jerusdp/ghdash/pull/199
 [#200]: https://github.com/jerusdp/ghdash/pull/200
+[#201]: https://github.com/jerusdp/ghdash/pull/201
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
