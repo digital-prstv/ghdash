@@ -44,7 +44,7 @@ serde = { version = "1.0.215", features = ["derive"] }
 serde_derive = "1.0.215"
 tokio = { version = "1.41.1", features = ["macros", "rt-multi-thread"] }
 thiserror = "2.0.3"
-tracing = "0.1.40"
+tracing = "0.1.41"
 tracing-opentelemetry = "0.28.0"
 tracing-subscriber = { version = "0.3.18", features = ["std", "env-filter"] }
 octocrate = { version = "2.0.1", features = [
