@@ -90,6 +90,7 @@ All notable changes to this project are documented in this file.
 - deps: update opentelemetry packages to 0.27.1(pr [#206])
 - deps: update rust crate clap-verbosity-flag to 3.0.1(pr [#207])
 - deps: update rust crate tracing to 0.1.41(pr [#208])
+- deps: update rust crate anyhow to 1.0.94(pr [#209])
 
 ### Security
 
@@ -424,6 +425,7 @@ All notable changes to this project are documented in this file.
 [#206]: https://github.com/jerusdp/ghdash/pull/206
 [#207]: https://github.com/jerusdp/ghdash/pull/207
 [#208]: https://github.com/jerusdp/ghdash/pull/208
+[#209]: https://github.com/jerusdp/ghdash/pull/209
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
