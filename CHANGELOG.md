@@ -100,6 +100,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate clap-verbosity-flag to 3.0.2(pr [#216])
 - deps: update rust crate thiserror to 2.0.8(pr [#217])
 - deps: update rust crate anyhow to 1.0.95(pr [#218])
+- deps: update rust crate reqwest to 0.12.10(pr [#219])
 
 ### Security
 
@@ -444,6 +445,7 @@ All notable changes to this project are documented in this file.
 [#216]: https://github.com/jerusdp/ghdash/pull/216
 [#217]: https://github.com/jerusdp/ghdash/pull/217
 [#218]: https://github.com/jerusdp/ghdash/pull/218
+[#219]: https://github.com/jerusdp/ghdash/pull/219
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
