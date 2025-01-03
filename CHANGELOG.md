@@ -103,6 +103,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate reqwest to 0.12.10(pr [#219])
 - deps: update rust crate thiserror to 2.0.9(pr [#220])
 - deps: update rust crate reqwest to 0.12.12(pr [#221])
+- deps: update serde packages to 1.0.217(pr [#222])
 
 ### Security
 
@@ -450,6 +451,7 @@ All notable changes to this project are documented in this file.
 [#219]: https://github.com/jerusdp/ghdash/pull/219
 [#220]: https://github.com/jerusdp/ghdash/pull/220
 [#221]: https://github.com/jerusdp/ghdash/pull/221
+[#222]: https://github.com/jerusdp/ghdash/pull/222
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
