@@ -138,6 +138,7 @@ All notable changes to this project are documented in this file.
 - Dependencies: update serde packages to 1.0.207(pr [#140])
 - Dependencies: update rust crate clap to 4.5.15(pr [#139])
 - Dependencies: bump rustls from 0.23.16 to 0.23.18 in the cargo group across 1 directory(pr [#205])
+- Dependencies: bump openssl from 0.10.68 to 0.10.70 in the cargo group across 1 directory(pr [#230])
 
 ## [0.1.7] - 2024-03-07
 
@@ -466,6 +467,7 @@ All notable changes to this project are documented in this file.
 [#227]: https://github.com/jerusdp/ghdash/pull/227
 [#228]: https://github.com/jerusdp/ghdash/pull/228
 [#229]: https://github.com/jerusdp/ghdash/pull/229
+[#230]: https://github.com/jerusdp/ghdash/pull/230
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
