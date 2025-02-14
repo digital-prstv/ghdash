@@ -113,6 +113,7 @@ All notable changes to this project are documented in this file.
 - config: migrate renovate config(pr [#229])
 - deps: update rust crate clap to 4.5.28(pr [#231])
 - deps: update rust crate clap to 4.5.29(pr [#232])
+- deps: update rust crate comfy-table to 7.1.4(pr [#233])
 
 ### Security
 
@@ -472,6 +473,7 @@ All notable changes to this project are documented in this file.
 [#230]: https://github.com/jerusdp/ghdash/pull/230
 [#231]: https://github.com/jerusdp/ghdash/pull/231
 [#232]: https://github.com/jerusdp/ghdash/pull/232
+[#233]: https://github.com/jerusdp/ghdash/pull/233
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
