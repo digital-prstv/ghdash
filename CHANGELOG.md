@@ -150,6 +150,7 @@ All notable changes to this project are documented in this file.
 - Dependencies: update rust crate clap to 4.5.15(pr [#139])
 - Dependencies: bump rustls from 0.23.16 to 0.23.18 in the cargo group across 1 directory(pr [#205])
 - Dependencies: bump openssl from 0.10.68 to 0.10.70 in the cargo group across 1 directory(pr [#230])
+- Dependencies: bump ring from 0.17.8 to 0.17.13 in the cargo group across 1 directory(pr [#242])
 
 ## [0.1.7] - 2024-03-07
 
@@ -490,6 +491,7 @@ All notable changes to this project are documented in this file.
 [#239]: https://github.com/jerusdp/ghdash/pull/239
 [#240]: https://github.com/jerusdp/ghdash/pull/240
 [#241]: https://github.com/jerusdp/ghdash/pull/241
+[#242]: https://github.com/jerusdp/ghdash/pull/242
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
