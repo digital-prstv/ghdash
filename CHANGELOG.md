@@ -123,6 +123,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate trycmd to 0.15.9(pr [#240])
 - deps: update serde packages to 1.0.218(pr [#241])
 - deps: update rust crate clap to 4.5.32(pr [#243])
+- deps: update rust crate reqwest to 0.12.14(pr [#244])
 
 ### Security
 
@@ -492,6 +493,7 @@ All notable changes to this project are documented in this file.
 [#240]: https://github.com/jerusdp/ghdash/pull/240
 [#241]: https://github.com/jerusdp/ghdash/pull/241
 [#243]: https://github.com/jerusdp/ghdash/pull/243
+[#244]: https://github.com/jerusdp/ghdash/pull/244
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
