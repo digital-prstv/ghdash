@@ -1270,9 +1270,9 @@ dependencies = [
 
 [[package]]
 name = "octocrate"
-version = "2.0.1"
+version = "2.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "68b6996d4597aff355019ba743f33dada3f1d74a54f7c008df9d617dfdc64ccf"
+checksum = "d485e5ea679c01f7021fcfc41a1de0f5c6928bb53f978a21e4f5de4a76c02afb"
 dependencies = [
  "chrono",
  "octocrate-core",
@@ -1284,9 +1284,9 @@ dependencies = [
 
 [[package]]
 name = "octocrate-core"
-version = "0.1.7"
+version = "0.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b53fff2bc57b59786a6c8307422e5dbce2e9c6df0b82676a65eab4f9193aebc8"
+checksum = "efa0936710022a97ddddf43dbb2e818e84d93b3325ddb19df268353f61b62df8"
 dependencies = [
  "chrono",
  "jsonwebtoken",
@@ -1299,9 +1299,9 @@ dependencies = [
 
 [[package]]
 name = "octocrate-types"
-version = "2.0.1"
+version = "2.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7fad2fd851d7504794b4ef9782b00cd34bbbc409d2ab3695a4e993223fa3d8ea"
+checksum = "6addcf2f8351ee10953f65200c77c616f02e0ab1919a1fb56d1eddd82a9030ac"
 dependencies = [
  "chrono",
  "serde",
