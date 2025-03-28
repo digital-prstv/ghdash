@@ -130,6 +130,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate octocrate to 2.2.0(pr [#248])
 - deps: update rust crate clap to 4.5.34(pr [#250])
 - deps: update rust crate log to 0.4.27(pr [#251])
+- deps: update rust crate tokio to 1.44.1(pr [#252])
 
 ### Security
 
@@ -506,6 +507,7 @@ All notable changes to this project are documented in this file.
 [#249]: https://github.com/jerusdp/ghdash/pull/249
 [#250]: https://github.com/jerusdp/ghdash/pull/250
 [#251]: https://github.com/jerusdp/ghdash/pull/251
+[#252]: https://github.com/jerusdp/ghdash/pull/252
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
