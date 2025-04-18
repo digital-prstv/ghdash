@@ -135,6 +135,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate tokio to v1.44.2 [security](pr [#255])
 - deps: update rust crate tokio to 1.44.2(pr [#258])
 - deps: update tracing and opentelemetry packages(pr [#253])
+- deps: update rust crate anyhow to 1.0.98(pr [#256])
 
 ### Security
 
@@ -516,6 +517,7 @@ All notable changes to this project are documented in this file.
 [#255]: https://github.com/jerusdp/ghdash/pull/255
 [#258]: https://github.com/jerusdp/ghdash/pull/258
 [#253]: https://github.com/jerusdp/ghdash/pull/253
+[#256]: https://github.com/jerusdp/ghdash/pull/256
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
