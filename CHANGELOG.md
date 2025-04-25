@@ -137,6 +137,7 @@ All notable changes to this project are documented in this file.
 - deps: update tracing and opentelemetry packages(pr [#253])
 - deps: update rust crate anyhow to 1.0.98(pr [#256])
 - deps: update rust crate clap to 4.5.36(pr [#257])
+- deps: update rust crate clap to 4.5.37(pr [#259])
 
 ### Security
 
@@ -520,6 +521,7 @@ All notable changes to this project are documented in this file.
 [#253]: https://github.com/jerusdp/ghdash/pull/253
 [#256]: https://github.com/jerusdp/ghdash/pull/256
 [#257]: https://github.com/jerusdp/ghdash/pull/257
+[#259]: https://github.com/jerusdp/ghdash/pull/259
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
