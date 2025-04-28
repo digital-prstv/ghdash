@@ -123,5 +123,4 @@ workflows:
           publish: false
           pcu_verbosity: "-vvvv"
           when_pcu_push: true
-          when_update_pcu: true
           pcu_semver: true
