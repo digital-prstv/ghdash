@@ -42,6 +42,7 @@ All notable changes to this project are documented in this file.
 - 🔧 chore(renovate)-merge tracing and opentelemetry package groups(pr [#249])
 - 👷 ci(circleci)-update circleci toolkit orb version(pr [#260])
 - 👷 ci(circleci)-add release-flag parameter and update workflows(pr [#261])
+- 👷 ci(circleci)-rename pcu parameters for clarity(pr [#262])
 
 ### Fixed
 
@@ -526,6 +527,7 @@ All notable changes to this project are documented in this file.
 [#259]: https://github.com/jerusdp/ghdash/pull/259
 [#260]: https://github.com/jerusdp/ghdash/pull/260
 [#261]: https://github.com/jerusdp/ghdash/pull/261
+[#262]: https://github.com/jerusdp/ghdash/pull/262
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
