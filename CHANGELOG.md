@@ -47,6 +47,7 @@ All notable changes to this project are documented in this file.
 - 👷 ci(circleci)-update toolkit version in circleci config(pr [#264])
 - 👷 ci(circleci)-remove unused config parameter(pr [#265])
 - 👷 ci(circleci)-update toolkit orb version(pr [#266])
+- 👷 ci(circleci)-update circleci-toolkit orb version(pr [#267])
 
 ### Fixed
 
@@ -536,6 +537,7 @@ All notable changes to this project are documented in this file.
 [#264]: https://github.com/jerusdp/ghdash/pull/264
 [#265]: https://github.com/jerusdp/ghdash/pull/265
 [#266]: https://github.com/jerusdp/ghdash/pull/266
+[#267]: https://github.com/jerusdp/ghdash/pull/267
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
