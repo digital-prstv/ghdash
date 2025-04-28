@@ -21,7 +21,7 @@ parameters:
     description: "If true, the release pipeline will be executed."
 
 orbs:
-  toolkit: jerusdp/circleci-toolkit@2.10.2
+  toolkit: jerusdp/circleci-toolkit@2.10.3
 
 executors:
   rust-env:
