@@ -153,6 +153,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate clap to 4.5.40(pr [#273])
 - deps: update rust crate futures-util to 0.3.31(pr [#274])
 - deps: update rust crate reqwest to 0.12.20(pr [#275])
+- deps: update rust crate bollard to 0.19.1(pr [#276])
 
 ### Security
 
@@ -552,6 +553,7 @@ All notable changes to this project are documented in this file.
 [#273]: https://github.com/jerusdp/ghdash/pull/273
 [#274]: https://github.com/jerusdp/ghdash/pull/274
 [#275]: https://github.com/jerusdp/ghdash/pull/275
+[#276]: https://github.com/jerusdp/ghdash/pull/276
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
