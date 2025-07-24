@@ -38,7 +38,7 @@ async fn main() -> Result<(), Error> {
                     let docker_connection = ghdash::connect_docker().await;
                     match docker_connection {
                         DockerConnection::Connection(docker) => {
-                            println!("Got a connection: {:#?}", docker);
+                            println!("Got a connection: {docker:#?}");
                             let containers = docker
                                 .list_containers(Some(
                                     bollard::query_parameters::ListContainersOptions {

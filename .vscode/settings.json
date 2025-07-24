@@ -26,6 +26,8 @@
         "octorust",
         "openzipkin",
         "rlinks",
-        "thiserror"
+        "thiserror",
+        "trycmd",
+        "zipkin"
     ]
 }
