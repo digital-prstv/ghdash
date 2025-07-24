@@ -157,6 +157,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate clap to 4.5.41(pr [#277])
 - deps: update rust crate reqwest to 0.12.22(pr [#278])
 - deps: update rust crate trycmd to 0.15.10(pr [#279])
+- deps: update rust crate tokio to 1.46.1(pr [#280])
 
 ### Security
 
@@ -560,6 +561,7 @@ All notable changes to this project are documented in this file.
 [#277]: https://github.com/jerusdp/ghdash/pull/277
 [#278]: https://github.com/jerusdp/ghdash/pull/278
 [#279]: https://github.com/jerusdp/ghdash/pull/279
+[#280]: https://github.com/jerusdp/ghdash/pull/280
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
