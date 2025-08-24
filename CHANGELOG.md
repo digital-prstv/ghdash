@@ -161,6 +161,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate clap-verbosity-flag to 3.0.4(pr [#284])
 - deps: update rust crate anyhow to 1.0.99(pr [#281])
 - deps: update rust crate bollard to 0.19.2(pr [#282])
+- deps: update rust crate clap to 4.5.45(pr [#283])
 
 ### Security
 
@@ -568,6 +569,7 @@ All notable changes to this project are documented in this file.
 [#284]: https://github.com/jerusdp/ghdash/pull/284
 [#281]: https://github.com/jerusdp/ghdash/pull/281
 [#282]: https://github.com/jerusdp/ghdash/pull/282
+[#283]: https://github.com/jerusdp/ghdash/pull/283
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
