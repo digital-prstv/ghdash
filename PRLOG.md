@@ -50,6 +50,7 @@ All notable changes to this project are documented in this file.
 - 👷 ci(circleci)-update circleci-toolkit orb version(pr [#267])
 - 🔧 chore(config)-update renovate schedule(pr [#268])
 - 🔧 chore(config)-update renovate schedule(pr [#270])
+- chore-rename CHANGELOG.md to PRLOG.md(pr [#286])
 
 ### Fixed
 
@@ -572,6 +573,7 @@ All notable changes to this project are documented in this file.
 [#282]: https://github.com/jerusdp/ghdash/pull/282
 [#283]: https://github.com/jerusdp/ghdash/pull/283
 [#285]: https://github.com/jerusdp/ghdash/pull/285
+[#286]: https://github.com/jerusdp/ghdash/pull/286
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
