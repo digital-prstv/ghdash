@@ -56,7 +56,7 @@ octocrate = { version = "2.2.0", features = [
 
 [dev-dependencies]
 futures-util = "0.3.31"
-reqwest = "0.12.22"
+reqwest = "0.12.23"
 trycmd = "0.15.10"
 
 [lib]
