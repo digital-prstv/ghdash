@@ -166,6 +166,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate bollard to 0.19.2(pr [#282])
 - deps: update rust crate clap to 4.5.45(pr [#283])
 - deps: update rust crate tracing-subscriber to v0.3.20 [security](pr [#285])
+- deps: update rust crate anyhow to 1.0.100(pr [#289])
 
 ### Security
 
@@ -578,6 +579,7 @@ All notable changes to this project are documented in this file.
 [#286]: https://github.com/jerusdp/ghdash/pull/286
 [#287]: https://github.com/jerusdp/ghdash/pull/287
 [#288]: https://github.com/jerusdp/ghdash/pull/288
+[#289]: https://github.com/jerusdp/ghdash/pull/289
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
