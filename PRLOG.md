@@ -171,6 +171,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate log to 0.4.28(pr [#291])
 - deps: update rust crate reqwest to 0.12.23(pr [#292])
 - deps: update rust crate thiserror to 2.0.16(pr [#293])
+- deps: update rust crate tokio to 1.47.1(pr [#294])
 
 ### Security
 
@@ -588,6 +589,7 @@ All notable changes to this project are documented in this file.
 [#291]: https://github.com/jerusdp/ghdash/pull/291
 [#292]: https://github.com/jerusdp/ghdash/pull/292
 [#293]: https://github.com/jerusdp/ghdash/pull/293
+[#294]: https://github.com/jerusdp/ghdash/pull/294
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
