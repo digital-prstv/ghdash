@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented in this file.
 
-## [Unreleased]
+## [0.1.14] - 2025-09-28
 
 ### Added
 
@@ -590,7 +590,7 @@ All notable changes to this project are documented in this file.
 [#292]: https://github.com/jerusdp/ghdash/pull/292
 [#293]: https://github.com/jerusdp/ghdash/pull/293
 [#294]: https://github.com/jerusdp/ghdash/pull/294
-[Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
+[0.1.14]: https://github.com/jerusdp/ghdash/compare/v0.1.7...v0.1.14
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/jerusdp/ghdash/compare/v0.1.4...v0.1.5

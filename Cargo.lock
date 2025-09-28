@@ -623,7 +623,7 @@ dependencies = [
 
 [[package]]
 name = "ghdash"
-version = "0.1.7"
+version = "0.1.14"
 dependencies = [
  "anyhow",
  "bollard",
