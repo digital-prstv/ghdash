@@ -174,6 +174,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate tokio to 1.47.1(pr [#294])
 - deps: update rust crate bollard to 0.19.3(pr [#295])
 - deps: update rust crate clap to 4.5.50(pr [#296])
+- deps: update rust crate bollard to 0.19.4(pr [#297])
 
 ### Security
 
@@ -594,6 +595,7 @@ All notable changes to this project are documented in this file.
 [#294]: https://github.com/jerusdp/ghdash/pull/294
 [#295]: https://github.com/jerusdp/ghdash/pull/295
 [#296]: https://github.com/jerusdp/ghdash/pull/296
+[#297]: https://github.com/jerusdp/ghdash/pull/297
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
