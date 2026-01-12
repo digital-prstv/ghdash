@@ -11,6 +11,7 @@ All notable changes to this project are documented in this file.
 - add AuthSource enum for authentication source and refactor(pr [#136])
 - add new_with_github_app function to create GitHub API client(pr [#138])
 - add release-hook.sh script for automated changelog generation(pr [#288])
+- BREAKING: migrate to circleci-toolkit v4.2.1(pr [#303])
 
 ### Changed
 
@@ -606,6 +607,7 @@ All notable changes to this project are documented in this file.
 [#300]: https://github.com/jerusdp/ghdash/pull/300
 [#301]: https://github.com/jerusdp/ghdash/pull/301
 [#302]: https://github.com/jerusdp/ghdash/pull/302
+[#303]: https://github.com/jerusdp/ghdash/pull/303
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
