@@ -54,6 +54,7 @@ All notable changes to this project are documented in this file.
 - 🔧 chore(config)-update renovate schedule(pr [#270])
 - chore-rename CHANGELOG.md to PRLOG.md(pr [#286])
 - chore-update release.toml to reference PRLOG.md instead of CHANGELOG.md(pr [#287])
+- chore-add standard config files(pr [#304])
 
 ### Fixed
 
@@ -608,6 +609,7 @@ All notable changes to this project are documented in this file.
 [#301]: https://github.com/jerusdp/ghdash/pull/301
 [#302]: https://github.com/jerusdp/ghdash/pull/302
 [#303]: https://github.com/jerusdp/ghdash/pull/303
+[#304]: https://github.com/jerusdp/ghdash/pull/304
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
