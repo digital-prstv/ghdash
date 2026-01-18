@@ -1,0 +1,70 @@
+[package]
+name = "ghdash"
+description = "Dashboard for Github account"
+version = "0.1.7"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+documentation = "https://docs.rs/ghdash"
+categories = [
+    "command-line-interface",
+    "command-line-utilities",
+    "development-tools",
+]
+keywords = ["github", "cli"]
+publish = false
+include = [
+    "**/*.rs",
+    "Cargo.toml",
+    "README.md",
+    "LICENSE-MIT",
+    "LICENSE-APACHE",
+    "CHANGES.md",
+]
+edition.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+bollard.workspace = true
+clap.workspace = true
+clap-verbosity-flag.workspace = true
+comfy-table.workspace = true
+confy.workspace = true
+log.workspace = true
+opentelemetry.workspace = true
+opentelemetry-zipkin.workspace = true
+opentelemetry_sdk.workspace = true
+serde.workspace = true
+serde_derive.workspace = true
+tokio.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+tracing-opentelemetry.workspace = true
+tracing-subscriber.workspace = true
+octocrate.workspace = true
+
+[dev-dependencies]
+futures-util.workspace = true
+reqwest.workspace = true
+trycmd.workspace = true
+
+[lib]
+name = "ghdash"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ghdash"
+path = "src/cli/main.rs"
+
+[[bin]]
+name = "jdp-ghdash"
+path = "src/gha/main.rs"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[lints]
+workspace = true
