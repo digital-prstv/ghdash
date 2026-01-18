@@ -1,0 +1,8 @@
+pre-release-commit-message = "chore: Release ghdash v{{version}}"
+tag-message = "{{tag_name}}"
+tag-name = "ghdash-v{{version}}"
+pre-release-hook = ["./release-hook.sh"]
+pre-release-replacements = [
+    { file = "README.md", search = "ghdash = \"\\d+\\.\\d+\\.\\d+\"", replace = "ghdash = \"{{version}}\"", min = 0 },
+    { file = "src/lib.rs", search = "ghdash = \"\\d+\\.\\d+\\.\\d+\"", replace = "ghdash = \"{{version}}\"", min = 0 },
+]

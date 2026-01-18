@@ -1,33 +1,14 @@
-[package]
-name = "ghdash"
-authors = ["Jeremiah Russell <jrussell@jerus.ie>"]
-version = "0.1.7"
-description = "Dashboard for Github account"
+[workspace]
+members = ["crates/ghdash"]
+resolver = "2"
+
+[workspace.package]
 edition = "2021"
-publish = false
+authors = ["Jeremiah Russell <jrussell@jerus.ie>"]
 rust-version = "1.81"
-license = "MIT OR Apache-2.0"
 repository = "https://github.com/jerusdp/ghdash"
-documentation = "https://docs.rs/ghdash"
-readme = "README.md"
-categories = [
-    "command-line-interface",
-    "command-line-utilities",
-    "development-tools",
-]
-keywords = ["github", "cli"]
-include = [
-    "**/*.rs",
-    "Cargo.toml",
-    "README.md",
-    "LICENSE-MIT",
-    "LICENSE-APACHE",
-    "CHANGES.md",
-]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
+[workspace.dependencies]
 anyhow = "1.0.100"
 bollard = "0.19.4"
 clap = { version = "4.5.53", features = ["derive", "cargo"] }
@@ -36,9 +17,7 @@ comfy-table = "7.1.4"
 confy = "0.6.1"
 log = "0.4.29"
 opentelemetry = "0.29.1"
-opentelemetry-zipkin = { version = "0.29.0", features = [
-    "reqwest-client",
-], default-features = false }
+opentelemetry-zipkin = { version = "0.29.0", features = ["reqwest-client"], default-features = false }
 opentelemetry_sdk = { version = "0.29.0", features = ["tokio", "rt-tokio"] }
 serde = { version = "1.0.219", features = ["derive"] }
 serde_derive = "1.0.219"
@@ -47,30 +26,10 @@ thiserror = "2.0.17"
 tracing = "0.1.41"
 tracing-opentelemetry = "0.30.0"
 tracing-subscriber = { version = "0.3.19", features = ["std", "env-filter"] }
-octocrate = { version = "2.2.0", features = [
-    "pulls",
-    "issues",
-    "repos",
-    "apps",
-] }
-
-[dev-dependencies]
+octocrate = { version = "2.2.0", features = ["pulls", "issues", "repos", "apps"] }
 futures-util = "0.3.31"
 reqwest = "0.12.28"
 trycmd = "0.15.10"
 
-[lib]
-name = "ghdash"
-path = "src/lib.rs"
-
-[[bin]]
-name = "ghdash"
-path = "src/cli/main.rs"
-
-[[bin]]
-name = "jdp-ghdash"
-path = "src/gha/main.rs"
-
-[package.metadata.docs.rs]
-all-features = true
-rustdoc-args = ["--cfg", "docsrs"]
+[workspace.lints.clippy]
+uninlined-format-args = "warn"
