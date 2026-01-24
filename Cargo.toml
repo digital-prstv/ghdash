@@ -11,7 +11,7 @@ repository = "https://github.com/jerusdp/ghdash"
 [workspace.dependencies]
 anyhow = "1.0.100"
 bollard = "0.19.4"
-clap = { version = "4.5.53", features = ["derive", "cargo"] }
+clap = { version = "4.5.54", features = ["derive", "cargo"] }
 clap-verbosity-flag = "3.0.4"
 comfy-table = "7.1.4"
 confy = "0.6.1"
