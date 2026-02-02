@@ -56,6 +56,7 @@ All notable changes to this project are documented in this file.
 - chore-update release.toml to reference PRLOG.md instead of CHANGELOG.md(pr [#287])
 - chore-add standard config files(pr [#304])
 - refactor-convert to workspace structure(pr [#305])
+- 👷 ci(circleci)-add pcu_prefix parameter to config(pr [#310])
 
 ### Fixed
 
@@ -620,6 +621,7 @@ All notable changes to this project are documented in this file.
 [#309]: https://github.com/jerusdp/ghdash/pull/309
 [#306]: https://github.com/jerusdp/ghdash/pull/306
 [#308]: https://github.com/jerusdp/ghdash/pull/308
+[#310]: https://github.com/jerusdp/ghdash/pull/310
 [Unreleased]: https://github.com/jerusdp/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/jerusdp/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/jerusdp/ghdash/compare/v0.1.5...v0.1.6
