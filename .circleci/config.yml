@@ -21,7 +21,7 @@ parameters:
     description: "If true, the release pipeline will be executed."
 
 orbs:
-  toolkit: jerusdp/circleci-toolkit@4.2.4
+  toolkit: digital-prstv/circleci-toolkit@4.2.4
 
 # Custom executors removed - using toolkit rolling executors instead
 
