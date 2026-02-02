@@ -115,7 +115,6 @@ workflows:
           ssh_fingerprint: << pipeline.parameters.fingerprint >>
           min_rust_version: << pipeline.parameters.min_rust_version >>
           publish: false
-          pcu_prefix: "ghdash-v"
           pcu_verbosity: "-vvvv"
-          when_pcu_push: true
+          when_pcu_push: false
           pcu_semver: true

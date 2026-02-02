@@ -1,4 +1,4 @@
-pre-release-commit-message = "chore: Release ghdash v{{version}}"
+pre-release-commit-message = "chore: Release ghdash"
 tag-message = "{{tag_name}}"
 tag-name = "ghdash-v{{version}}"
 pre-release-hook = ["./release-hook.sh"]
