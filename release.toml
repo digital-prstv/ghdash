@@ -9,7 +9,7 @@ pre-release-replacements = [
     # {file = "README.md", search = "ghdash = .*", replace = "{{crate_name}} = \"{{version}}\""},
     # {file = "README.md", search = "ghdash 0.*", replace = "{{crate_name}} {{version}}"},
     { file = "src/lib.rs", search = "ghdash = .*", replace = "{{crate_name}} = \"{{version}}\"" },
-    { file = "tests/cmd/version.trycmd", search = "ghdash 0.*", replace = "{{crate_name}} {{version}}" },
+    { file = "crates/ghdash/tests/cmd/version.trycmd", search = "ghdash 0.*", replace = "{{crate_name}} {{version}}" },
     { file = "PRLOG.md", search = "## \\[Unreleased\\]", replace = "## [{{version}}] - {{date}}", exactly = 1 },
     { file = "PRLOG.md", search = "\\[Unreleased\\]:", replace = "[{{version}}]:", exactly = 1 },
     { file = "PRLOG.md", search = "\\.\\.\\.HEAD", replace = "...{{tag_name}}", exactly = 1 },
