@@ -5,7 +5,7 @@ resolver = "2"
 [workspace.package]
 edition = "2021"
 authors = ["Jeremiah Russell <jrussell@jerus.ie>"]
-rust-version = "1.82"
+rust-version = "1.88"
 repository = "https://github.com/jerusdp/ghdash"
 
 [workspace.dependencies]
