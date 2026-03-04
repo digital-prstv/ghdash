@@ -61,6 +61,7 @@ All notable changes to this project are documented in this file.
 - Update-CircleCI-config-for-ghdash-release(pr [#311])
 - 👷 ci(circleci)-update orb source for circleci toolkit(pr [#312])
 - chore-migrate to 3-file CI model(pr [#315])
+- chore-disable dependabot and standardise renovate(pr [#316])
 
 ### Fixed
 
@@ -630,6 +631,7 @@ All notable changes to this project are documented in this file.
 [#312]: https://github.com/digital-prstv/ghdash/pull/312
 [#314]: https://github.com/digital-prstv/ghdash/pull/314
 [#315]: https://github.com/digital-prstv/ghdash/pull/315
+[#316]: https://github.com/digital-prstv/ghdash/pull/316
 [Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/digital-prstv/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/digital-prstv/ghdash/compare/v0.1.5...v0.1.6
