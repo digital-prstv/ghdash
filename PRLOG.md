@@ -193,6 +193,7 @@ All notable changes to this project are documented in this file.
 - deps: update serde packages to 1.0.228(pr [#309])
 - deps: update rust crate clap to 4.5.54(pr [#306])
 - deps: update rust crate trycmd to 0.15.11(pr [#308])
+- deps: update rust crate clap to 4.5.60(pr [#317])
 
 ### Security
 
@@ -632,6 +633,7 @@ All notable changes to this project are documented in this file.
 [#314]: https://github.com/digital-prstv/ghdash/pull/314
 [#315]: https://github.com/digital-prstv/ghdash/pull/315
 [#316]: https://github.com/digital-prstv/ghdash/pull/316
+[#317]: https://github.com/digital-prstv/ghdash/pull/317
 [Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/digital-prstv/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/digital-prstv/ghdash/compare/v0.1.5...v0.1.6
