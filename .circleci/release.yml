@@ -1,0 +1,60 @@
+version: 2.1
+
+parameters:
+  ghdash_version:
+    type: string
+    default: ""
+    description: "Override ghdash crate version (empty = nextsv auto-detect)"
+  workspace_version:
+    type: string
+    default: ""
+    description: "Override workspace v* version (empty = nextsv auto-detect)"
+
+orbs:
+  toolkit: jerus-org/circleci-toolkit@4.7.2
+
+jobs:
+  tools:
+    executor: toolkit/rust_env_rolling
+    steps:
+      - run:
+          name: Verify tools
+          command: |
+            set -ex
+            nextsv --version
+            pcu --version
+            cargo release --version
+            jq --version
+
+workflows:
+  release:
+    jobs:
+      - tools
+
+      - toolkit/calculate_versions:
+          name: calculate-versions
+          requires: [tools]
+          crates: "ghdash:ghdash-v"
+          crate_version_overrides: "ghdash:<< pipeline.parameters.ghdash_version >>"
+          workspace_version_override: << pipeline.parameters.workspace_version >>
+
+      - approve-release:
+          type: approval
+          requires: [calculate-versions]
+
+      - toolkit/release_crate:
+          name: release-ghdash
+          requires: [approve-release]
+          package: ghdash
+          crate_tag_prefix: ghdash-v
+          context:
+            - release
+            - bot-check
+            - pcu-app
+
+      - toolkit/release_prlog:
+          requires: [release-ghdash]
+          context:
+            - release
+            - bot-check
+            - pcu-app
