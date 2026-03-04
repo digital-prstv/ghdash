@@ -5,5 +5,16 @@
   ],
   "extends": [
     "github>jerusdp/renovate-config:default.json"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["jerusdp/circleci-toolkit"],
+      "enabled": false
+    },
+    {
+      "matchPackageNames": ["digital-prstv/circleci-toolkit"],
+      "enabled": true,
+      "sourceUrl": "https://github.com/jerus-org/circleci-toolkit"
+    }
   ]
 }
