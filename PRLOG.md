@@ -197,6 +197,7 @@ All notable changes to this project are documented in this file.
 - override toolkit package rules for digital-prstv org(pr [#323])
 - deps: update rust crate bollard to 0.20.1(pr [#318])
 - deps: update rust crate comfy-table to 7.2.2(pr [#319])
+- deps: update rust crate tokio to 1.50.0(pr [#321])
 
 ### Security
 
@@ -640,6 +641,7 @@ All notable changes to this project are documented in this file.
 [#323]: https://github.com/digital-prstv/ghdash/pull/323
 [#318]: https://github.com/digital-prstv/ghdash/pull/318
 [#319]: https://github.com/digital-prstv/ghdash/pull/319
+[#321]: https://github.com/digital-prstv/ghdash/pull/321
 [Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/digital-prstv/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/digital-prstv/ghdash/compare/v0.1.5...v0.1.6
