@@ -2,7 +2,35 @@
 
 All notable changes to this project are documented in this file.
 
+## [Unreleased]
+
 ## [0.2.1] - 2026-03-05
+
+### Added
+
+- add security improvements to CI(pr [#314])
+
+### Changed
+
+- chore-migrate to 3-file CI model(pr [#315])
+- chore-disable dependabot and standardise renovate(pr [#316])
+- revert-roll back partial 0.2.1 release and fix CI(pr [#329])
+
+### Fixed
+
+- deps: update rust crate clap to 4.5.60(pr [#317])
+- deps: update rust crate bollard to 0.20.1(pr [#318])
+- deps: update rust crate comfy-table to 7.2.2(pr [#319])
+- deps: update rust crate reqwest to 0.13.2(pr [#320])
+- deps: update rust crate tokio to 1.50.0(pr [#321])
+- deps: update rust crate confy to v2(pr [#322])
+- override toolkit package rules for digital-prstv org(pr [#323])
+- deps: update rust crate anyhow to 1.0.102(pr [#324])
+- deps: update tracing packages(pr [#326])
+- deps: update opentelemetry packages(pr [#327])
+- deps: update rust crate trycmd to v1(pr [#328])
+
+## [0.2.0] - 2026-02-02
 
 ### Added
 
@@ -12,7 +40,6 @@ All notable changes to this project are documented in this file.
 - add new_with_github_app function to create GitHub API client(pr [#138])
 - add release-hook.sh script for automated changelog generation(pr [#288])
 - BREAKING: migrate to circleci-toolkit v4.2.1(pr [#303])
-- add security improvements to CI(pr [#314])
 
 ### Changed
 
@@ -60,9 +87,6 @@ All notable changes to this project are documented in this file.
 - 👷 ci(circleci)-add pcu_prefix parameter to config(pr [#310])
 - Update-CircleCI-config-for-ghdash-release(pr [#311])
 - 👷 ci(circleci)-update orb source for circleci toolkit(pr [#312])
-- chore-migrate to 3-file CI model(pr [#315])
-- chore-disable dependabot and standardise renovate(pr [#316])
-- revert-roll back partial 0.2.1 release and fix CI(pr [#329])
 
 ### Fixed
 
@@ -194,17 +218,6 @@ All notable changes to this project are documented in this file.
 - deps: update serde packages to 1.0.228(pr [#309])
 - deps: update rust crate clap to 4.5.54(pr [#306])
 - deps: update rust crate trycmd to 0.15.11(pr [#308])
-- deps: update rust crate clap to 4.5.60(pr [#317])
-- override toolkit package rules for digital-prstv org(pr [#323])
-- deps: update rust crate bollard to 0.20.1(pr [#318])
-- deps: update rust crate comfy-table to 7.2.2(pr [#319])
-- deps: update rust crate tokio to 1.50.0(pr [#321])
-- deps: update rust crate confy to v2(pr [#322])
-- deps: update opentelemetry packages(pr [#327])
-- deps: update rust crate anyhow to 1.0.102(pr [#324])
-- deps: update tracing packages(pr [#326])
-- deps: update rust crate reqwest to 0.13.2(pr [#320])
-- deps: update rust crate trycmd to v1(pr [#328])
 
 ### Security
 
@@ -656,7 +669,8 @@ All notable changes to this project are documented in this file.
 [#320]: https://github.com/digital-prstv/ghdash/pull/320
 [#328]: https://github.com/digital-prstv/ghdash/pull/328
 [#329]: https://github.com/digital-prstv/ghdash/pull/329
-[0.2.1]: https://github.com/digital-prstv/ghdash/compare/v0.1.7...v0.2.1
+[0.2.1]: https://github.com/digital-prstv/ghdash/compare/v0.2.0...v0.2.1
+[0.2.0]: https://github.com/digital-prstv/ghdash/compare/v0.1.7...v0.2.0
 [0.1.7]: https://github.com/digital-prstv/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/digital-prstv/ghdash/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/digital-prstv/ghdash/compare/v0.1.4...v0.1.5
