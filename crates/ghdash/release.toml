@@ -5,4 +5,5 @@ pre-release-hook = ["./release-hook.sh"]
 pre-release-replacements = [
     { file = "README.md", search = "ghdash = \"\\d+\\.\\d+\\.\\d+\"", replace = "ghdash = \"{{version}}\"", min = 0 },
     { file = "src/lib.rs", search = "ghdash = \"\\d+\\.\\d+\\.\\d+\"", replace = "ghdash = \"{{version}}\"", min = 0 },
+    { file = "tests/cmd/version.trycmd", search = "ghdash \\d+\\.\\d+\\.\\d+", replace = "ghdash {{version}}", exactly = 2 },
 ]
