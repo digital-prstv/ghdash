@@ -103,7 +103,7 @@ impl Dashboard {
         // Get the installation for a user/org.
         let installation = api.apps.get_user_installation(user).send().await.unwrap();
 
-        // Get the Installation Acccess Token for this Installation
+        // Get the Installation Access Token for this Installation
         let installation_token = api
             .apps
             .create_installation_access_token(installation.id)
@@ -286,6 +286,7 @@ impl fmt::Display for Dashboard {
     }
 }
 
+#[allow(dead_code)]
 #[instrument(skip(repo) fields(repo.name))]
 fn owned_by(repo: &Repository, user: &str) -> bool {
     let owner = repo.owner.clone();
