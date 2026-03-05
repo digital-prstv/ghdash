@@ -202,6 +202,7 @@ All notable changes to this project are documented in this file.
 - deps: update opentelemetry packages(pr [#327])
 - deps: update rust crate anyhow to 1.0.102(pr [#324])
 - deps: update tracing packages(pr [#326])
+- deps: update rust crate reqwest to 0.13.2(pr [#320])
 
 ### Security
 
@@ -650,6 +651,7 @@ All notable changes to this project are documented in this file.
 [#327]: https://github.com/digital-prstv/ghdash/pull/327
 [#324]: https://github.com/digital-prstv/ghdash/pull/324
 [#326]: https://github.com/digital-prstv/ghdash/pull/326
+[#320]: https://github.com/digital-prstv/ghdash/pull/320
 [Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/digital-prstv/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/digital-prstv/ghdash/compare/v0.1.5...v0.1.6
