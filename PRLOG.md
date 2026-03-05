@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented in this file.
 
-## [Unreleased]
+## [0.2.1] - 2026-03-05
 
 ### Added
 
@@ -656,7 +656,7 @@ All notable changes to this project are documented in this file.
 [#320]: https://github.com/digital-prstv/ghdash/pull/320
 [#328]: https://github.com/digital-prstv/ghdash/pull/328
 [#329]: https://github.com/digital-prstv/ghdash/pull/329
-[Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.1.7...HEAD
+[0.2.1]: https://github.com/digital-prstv/ghdash/compare/v0.1.7...v0.2.1
 [0.1.7]: https://github.com/digital-prstv/ghdash/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/digital-prstv/ghdash/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/digital-prstv/ghdash/compare/v0.1.4...v0.1.5
