@@ -4,6 +4,8 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+- fix: trycmd snapshot, PRLOG restructure and release.toml cleanup(pr [#330])
+
 ## [0.2.1] - 2026-03-05
 
 ### Added
@@ -669,6 +671,7 @@ All notable changes to this project are documented in this file.
 [#320]: https://github.com/digital-prstv/ghdash/pull/320
 [#328]: https://github.com/digital-prstv/ghdash/pull/328
 [#329]: https://github.com/digital-prstv/ghdash/pull/329
+[#330]: https://github.com/digital-prstv/ghdash/pull/330
 [0.2.1]: https://github.com/digital-prstv/ghdash/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/digital-prstv/ghdash/compare/v0.1.7...v0.2.0
 [0.1.7]: https://github.com/digital-prstv/ghdash/compare/v0.1.6...v0.1.7
