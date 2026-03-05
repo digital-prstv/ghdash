@@ -36,7 +36,7 @@ octocrate = { version = "2.2.0", features = [
 ] }
 futures-util = "0.3.32"
 reqwest = "0.13.2"
-trycmd = "0.15.11"
+trycmd = "1.0.1"
 
 [workspace.lints.clippy]
 uninlined-format-args = "warn"
