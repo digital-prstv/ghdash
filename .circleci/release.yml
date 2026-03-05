@@ -11,7 +11,7 @@ parameters:
     description: "Override workspace v* version (empty = nextsv auto-detect)"
 
 orbs:
-  toolkit: digital-prstv/circleci-toolkit@4.7.2
+  toolkit: digital-prstv/circleci-toolkit@4.8.0
 
 jobs:
   tools:
@@ -47,6 +47,7 @@ workflows:
           requires: [approve-release]
           package: ghdash
           crate_tag_prefix: ghdash-v
+          publish: false
           context:
             - release
             - bot-check
