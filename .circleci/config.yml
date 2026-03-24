@@ -6,7 +6,7 @@ parameters:
     default: "1.88"
 
 orbs:
-  toolkit: digital-prstv/circleci-toolkit@4.8.0
+  toolkit: digital-prstv/circleci-toolkit@5.3.8
 
 workflows:
   validation:
