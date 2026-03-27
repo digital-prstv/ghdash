@@ -10,6 +10,10 @@ All notable changes to this project are documented in this file.
 - chore-update prlog for pr (#330)(pr [#331])
 - chore-migrate CI to circleci-toolkit 6.0.0(pr [#339])
 
+### Fixed
+
+- deps: update rust crate bollard to 0.20.2(pr [#333])
+
 ### Security
 
 - Dependencies: bump quinn-proto from 0.11.13 to 0.11.14 in the cargo group across 1 directory(pr [#332])
@@ -683,6 +687,7 @@ All notable changes to this project are documented in this file.
 [#331]: https://github.com/digital-prstv/ghdash/pull/331
 [#332]: https://github.com/digital-prstv/ghdash/pull/332
 [#339]: https://github.com/digital-prstv/ghdash/pull/339
+[#333]: https://github.com/digital-prstv/ghdash/pull/333
 [Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.2.1...HEAD
 [0.2.1]: https://github.com/digital-prstv/ghdash/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/digital-prstv/ghdash/compare/v0.1.7...v0.2.0
