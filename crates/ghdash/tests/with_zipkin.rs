@@ -11,7 +11,7 @@ use bollard::{
         CreateContainerOptions, ListContainersOptions, StartContainerOptions, StopContainerOptions,
         WaitContainerOptions,
     },
-    models::HostConfig,
+    secret::HostConfig,
     Docker,
 };
 
