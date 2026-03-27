@@ -13,6 +13,7 @@ All notable changes to this project are documented in this file.
 ### Fixed
 
 - deps: update rust crate bollard to 0.20.2(pr [#333])
+- remove jq from tools verification(pr [#340])
 
 ### Security
 
@@ -688,6 +689,7 @@ All notable changes to this project are documented in this file.
 [#332]: https://github.com/digital-prstv/ghdash/pull/332
 [#339]: https://github.com/digital-prstv/ghdash/pull/339
 [#333]: https://github.com/digital-prstv/ghdash/pull/333
+[#340]: https://github.com/digital-prstv/ghdash/pull/340
 [Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.2.1...HEAD
 [0.2.1]: https://github.com/digital-prstv/ghdash/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/digital-prstv/ghdash/compare/v0.1.7...v0.2.0
