@@ -6,12 +6,11 @@ use std::{
 use futures_util::StreamExt;
 
 use bollard::{
-    models::PortBinding,
+    models::{HostConfig, PortBinding},
     query_parameters::{
         CreateContainerOptions, ListContainersOptions, StartContainerOptions, StopContainerOptions,
         WaitContainerOptions,
     },
-    models::HostConfig,
     Docker,
 };
 
