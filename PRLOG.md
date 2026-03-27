@@ -8,6 +8,7 @@ All notable changes to this project are documented in this file.
 ### Changed
 
 - chore-update prlog for pr (#330)(pr [#331])
+- chore-migrate CI to circleci-toolkit 6.0.0(pr [#339])
 
 ### Security
 
@@ -681,6 +682,7 @@ All notable changes to this project are documented in this file.
 [#330]: https://github.com/digital-prstv/ghdash/pull/330
 [#331]: https://github.com/digital-prstv/ghdash/pull/331
 [#332]: https://github.com/digital-prstv/ghdash/pull/332
+[#339]: https://github.com/digital-prstv/ghdash/pull/339
 [Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.2.1...HEAD
 [0.2.1]: https://github.com/digital-prstv/ghdash/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/digital-prstv/ghdash/compare/v0.1.7...v0.2.0
