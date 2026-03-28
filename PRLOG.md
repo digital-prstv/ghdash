@@ -16,6 +16,7 @@ All notable changes to this project are documented in this file.
 - remove jq from tools verification(pr [#340])
 - deps: update rust crate tracing-subscriber to 0.3.23(pr [#334])
 - deps: update rust crate clap to 4.6.0(pr [#336])
+- deps: update rust crate trycmd to 1.2.0(pr [#337])
 
 ### Security
 
@@ -694,6 +695,7 @@ All notable changes to this project are documented in this file.
 [#340]: https://github.com/digital-prstv/ghdash/pull/340
 [#334]: https://github.com/digital-prstv/ghdash/pull/334
 [#336]: https://github.com/digital-prstv/ghdash/pull/336
+[#337]: https://github.com/digital-prstv/ghdash/pull/337
 [Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.2.1...HEAD
 [0.2.1]: https://github.com/digital-prstv/ghdash/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/digital-prstv/ghdash/compare/v0.1.7...v0.2.0
