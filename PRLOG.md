@@ -8,6 +8,10 @@ All notable changes to this project are documented in this file.
 
 - 📦 build(dependencies)-update crate dependencies(pr [#343])
 
+### Fixed
+
+- deps: update dependency toolkit to v6.2.0(pr [#346])
+
 ### Security
 
 - Dependencies: bump rand from 0.9.1 to 0.9.4 in the cargo group across 1 directory(pr [#341])
@@ -710,6 +714,7 @@ All notable changes to this project are documented in this file.
 [#341]: https://github.com/digital-prstv/ghdash/pull/341
 [#342]: https://github.com/digital-prstv/ghdash/pull/342
 [#343]: https://github.com/digital-prstv/ghdash/pull/343
+[#346]: https://github.com/digital-prstv/ghdash/pull/346
 [Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.2.2...HEAD
 [0.2.2]: https://github.com/digital-prstv/ghdash/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/digital-prstv/ghdash/compare/v0.2.0...v0.2.1
