@@ -11,7 +11,7 @@ parameters:
     description: "Override workspace v* version (empty = nextsv auto-detect)"
 
 orbs:
-  toolkit: digital-prstv/circleci-toolkit@6.0.0
+  toolkit: digital-prstv/circleci-toolkit@6.2.0
 
 jobs:
   tools:
