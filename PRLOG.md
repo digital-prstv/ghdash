@@ -12,6 +12,7 @@ All notable changes to this project are documented in this file.
 
 - deps: update dependency toolkit to v6.2.0(pr [#346])
 - deps: update rust crate clap to 4.6.1(pr [#344])
+- deps: update rust crate tokio to 1.52.1(pr [#345])
 
 ### Security
 
@@ -717,6 +718,7 @@ All notable changes to this project are documented in this file.
 [#343]: https://github.com/digital-prstv/ghdash/pull/343
 [#346]: https://github.com/digital-prstv/ghdash/pull/346
 [#344]: https://github.com/digital-prstv/ghdash/pull/344
+[#345]: https://github.com/digital-prstv/ghdash/pull/345
 [Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.2.2...HEAD
 [0.2.2]: https://github.com/digital-prstv/ghdash/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/digital-prstv/ghdash/compare/v0.2.0...v0.2.1
