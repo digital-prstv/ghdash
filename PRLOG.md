@@ -18,6 +18,7 @@ All notable changes to this project are documented in this file.
 
 - Dependencies: bump rand from 0.9.1 to 0.9.4 in the cargo group across 1 directory(pr [#341])
 - Dependencies: bump openssl from 0.10.72 to 0.10.78 in the cargo group across 1 directory(pr [#342])
+- Dependencies: bump openssl from 0.10.78 to 0.10.79 in the cargo group across 1 directory(pr [#347])
 
 ## [0.2.2] - 2026-03-28
 
@@ -719,6 +720,7 @@ All notable changes to this project are documented in this file.
 [#346]: https://github.com/digital-prstv/ghdash/pull/346
 [#344]: https://github.com/digital-prstv/ghdash/pull/344
 [#345]: https://github.com/digital-prstv/ghdash/pull/345
+[#347]: https://github.com/digital-prstv/ghdash/pull/347
 [Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.2.2...HEAD
 [0.2.2]: https://github.com/digital-prstv/ghdash/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/digital-prstv/ghdash/compare/v0.2.0...v0.2.1
