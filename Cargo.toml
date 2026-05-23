@@ -35,7 +35,7 @@ octocrate = { version = "2.2.0", features = [
     "apps",
 ] }
 futures-util = "0.3.32"
-reqwest = "0.13.2"
+reqwest = "0.13.3"
 trycmd = "1.2.0"
 
 [workspace.lints.clippy]
