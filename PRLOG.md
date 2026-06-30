@@ -21,6 +21,7 @@ All notable changes to this project are documented in this file.
 - deps: update dependency toolkit to v6.4.2(pr [#357])
 - deps: update dependency toolkit to v6.5.0(pr [#361])
 - deps: update rust crate log to 0.4.33(pr [#355])
+- deps: update rust crate reqwest to 0.13.4(pr [#356])
 
 ### Security
 
@@ -737,6 +738,7 @@ All notable changes to this project are documented in this file.
 [#357]: https://github.com/digital-prstv/ghdash/pull/357
 [#361]: https://github.com/digital-prstv/ghdash/pull/361
 [#355]: https://github.com/digital-prstv/ghdash/pull/355
+[#356]: https://github.com/digital-prstv/ghdash/pull/356
 [Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.2.2...HEAD
 [0.2.2]: https://github.com/digital-prstv/ghdash/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/digital-prstv/ghdash/compare/v0.2.0...v0.2.1
