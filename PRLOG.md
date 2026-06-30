@@ -18,6 +18,7 @@ All notable changes to this project are documented in this file.
 - deps: update rust crate tokio to 1.52.3(pr [#351])
 - deps: update rust crate bollard to 0.21.0(pr [#353])
 - deps: update rust crate anyhow to 1.0.103(pr [#358])
+- deps: update dependency toolkit to v6.4.2(pr [#357])
 
 ### Security
 
@@ -731,6 +732,7 @@ All notable changes to this project are documented in this file.
 [#351]: https://github.com/digital-prstv/ghdash/pull/351
 [#353]: https://github.com/digital-prstv/ghdash/pull/353
 [#358]: https://github.com/digital-prstv/ghdash/pull/358
+[#357]: https://github.com/digital-prstv/ghdash/pull/357
 [Unreleased]: https://github.com/digital-prstv/ghdash/compare/v0.2.2...HEAD
 [0.2.2]: https://github.com/digital-prstv/ghdash/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/digital-prstv/ghdash/compare/v0.2.0...v0.2.1
